@@ -1,38 +1,214 @@
-.App {
-  text-align: center;
-}
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+body{
+  background-image: url(space.jpg);
+  background-repeat: repeat;
   color: white;
+  z-index: -1;
+
 }
 
-.App-link {
-  color: #61dafb;
+.mainTable{
+
+  width: 80%;
+  float: left;
+}
+#sideBar{
+  margin-top: 80px;
+  margin-left: 60px;
+  float: left;
+  position: fixed;
+  top: 20px;
+  right: 20px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+#actionColumn{
+
+  width: 150px;
+}
+
+#mainButton{
+
+  width: 200px;
+}
+
+
+.mainForm{
+
+  margin-top: 200px;
+  margin-right: auto;
+  margin-left: auto;
+  width: 1200px;
+  color:white;
+}
+
+
+.myForm {
+  margin-left: 100px;
+  text-align: center;
+  float: left;
+  width:400px;
+  color:white;
+
+}
+
+.myLink{
+  width: 112px;
+}
+
+.myLink2{
+  width: 112px;
+  margin-left: -137px;
+}
+
+#mainTablePasssengerFlights{
+
+  width: 700px;
+  float: left;
+  position: relative;
+}
+
+.passengerTable{
+
+   float: left;
+  position: relative;
+  margin-top: 25px;
+  margin-left: 25px;
+}
+
+
+#flightTable{
+
+  float: left;
+  position: relative;
+  margin-top: 25px;
+  margin-left: 25px;
+}
+
+
+
+/* ------------------ fontello icons  ------------------------------*/
+
+.icon-trash-2{
+
+  position: absolute;
+  right: 10px;
+   
+}
+
+.icon-trash-2:hover{
+
+  color: #0066ff;
+  cursor: pointer;
+}
+
+.icon-user-plus{
+
+  position: absolute;
+  right: 40px;
+}
+
+.icon-sliders{
+
+  position: absolute;
+  right: 75px;
+}
+
+.icon-flight-1{
+
+  position: absolute;
+  right: 40px;
+}
+
+.icon-user{
+
+  position: absolute;
+  right: 75px;
+}
+
+.icon-up-open{
+
+  color:#0066ff;
+  position: fixed;
+  bottom:15px;
+  right:30px;
+  font-size: 45px;
+  
+}
+
+.icon-up-open:hover{
+
+  cursor: pointer;
+}
+
+
+
+
+/* ------------------------------------------------------- */
+
+.mainNavBar{
+
+  margin-left: 40px;
+}
+
+.searchButton{
+
+  width: 100px;
+  height: 38px;
+  margin-top: 37px;
+  margin-right: 20px;
+}
+
+#spaceLogo{
+  display: block;
+  width:300px;
+  margin-left: auto;
+  margin-right: auto;
+ 
+}
+
+#spaceLogoNav{
+  
+  width:55px;
+  position: absolute;
+  top:0px;
+  left:10px;
+ 
+}
+
+.mainFormCenter{
+
+
+  margin-top: 100px;
+  margin-right: auto;
+  margin-left: auto;
+  width: 600px;
+  color:white;
+
+}
+
+#selectFlightPassengerForm {
+  margin-left: 30px;
+  text-align: center;
+  float: left;
+  width:400px;
+  color:white;
+
+}
+
+.searchingForm{
+
+  margin-top: 10px;
+  margin-left: 10px;;
+  color:white;
+}
+
+h2{
+
+  text-align: center;
+  padding-bottom: 40px;
+}
+
+.selectFlights{
+
+  width: 500px;
 }
