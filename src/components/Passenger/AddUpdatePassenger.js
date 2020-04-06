@@ -19,7 +19,7 @@ constructor(props) {
         
         if(this.props.match.params.id !== undefined){
               
-            fetch('https://myspacetravel.herokuapp.com/loadPassenger'+this.props.match.params.id)
+            fetch('http://localhost:8080/loadPassenger'+this.props.match.params.id)
             .then(response => response.json())
             .then(result =>  {
                 console.log(result)
@@ -45,10 +45,10 @@ constructor(props) {
         let URL
         let method
         if(this.props.match.params.id !== undefined){
-            URL = "https://myspacetravel.herokuapp.com/updatePassenger";
+            URL = "http://localhost:8080/updatePassenger";
             method = "PUT";
         }else{
-            URL = "https://myspacetravel.herokuapp.com/savePassenger";
+            URL = "http://localhost:8080/savePassenger";
             method = "POST";
         }
          fetch(URL, {

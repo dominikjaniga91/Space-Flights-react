@@ -1,5 +1,5 @@
 import React from 'react';
-import spaceLogo from './space-logo.png'
+import spaceLogo from './assets/images/space-logo.png'
 
 const Home = () => {
     return (

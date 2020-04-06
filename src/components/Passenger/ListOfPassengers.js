@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import { Table } from "react-bootstrap";
-import '../App.css';
+import '../../App.css';
 import { Link} from "react-router-dom";
 import { Button } from "react-bootstrap";
 import { Form } from "react-bootstrap";
@@ -20,7 +20,7 @@ class ListOfPassengers extends Component{
 }
 
   async componentDidMount() {
-    fetch('https://myspacetravel.herokuapp.com/allPassengers')
+    fetch('http://localhost:8080/allPassengers')
       .then(response => response.json())
       .then(result =>  { 
 
@@ -33,13 +33,22 @@ class ListOfPassengers extends Component{
   deletePassenger(passengerId) {
 
     if(window.confirm("Operation is irreversible. Are you sure that you want to continue?")){
-      fetch('https://myspacetravel.herokuapp.com/deletePassenger'+passengerId,
+      fetch('http://localhost:8080/deletePassenger'+passengerId,
       { method:'DELETE' })
 
       const items = this.state.dataPassenger.filter(item => item.id !== passengerId);
       this.setState({ dataPassenger: items });
     }
   }
+
+  handleChange = event => {
+    const newValue = event.target.type === 'number'
+                      ? parseInt(event.target.value)
+                      : event.target.value;
+    const fieldName = event.target.name; // nazwa pola w formularzu
+    const updatedState = { [fieldName]: newValue}; // zapisuje każde pole z formularza
+    this.setState(updatedState);
+}
 
   render() {
     return (
@@ -52,7 +61,6 @@ class ListOfPassengers extends Component{
               
                   <Form.Control type="text"
                       name="destination"
-                      id="destination"
                       value={this.state.firstName}
                       onChange={this.handleChange}
                       required />
@@ -64,7 +72,6 @@ class ListOfPassengers extends Component{
               
                   <Form.Control type="text"
                       name="destination"
-                      id="destination"
                       value={this.state.lastName}
                       onChange={this.handleChange}
                       required />
@@ -76,7 +83,6 @@ class ListOfPassengers extends Component{
                   
                   <Form.Control type="date"
                       name="finishDate"
-                      id="finishDate"
                       value={this.state.birthDate}
                       onChange={this.handleChange}
                       required />
@@ -105,7 +111,7 @@ class ListOfPassengers extends Component{
         </thead>
         <tbody>
           {this.state.dataPassenger.map((passenger) => (
-            <tr>
+            <tr key={passenger.id}>
             <td>{passenger.id}</td>
             <td>{passenger.firstName}</td>
             <td>{passenger.lastName}</td>

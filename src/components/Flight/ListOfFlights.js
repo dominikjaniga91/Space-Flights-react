@@ -2,14 +2,14 @@
 import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import { Table } from "react-bootstrap";
-import '../App.css';
+import '../../App.css';
 import { Link} from "react-router-dom";
 import { Button } from "react-bootstrap";
 import { Form } from "react-bootstrap";
 import { Col } from "react-bootstrap";
 import SearchFlight from "./SearchFlight";
 import {Link as MyLink} from 'react-scroll';
-
+import MyForm from '../Form/MyForm';
 
 
 class ListOfFlights extends Component{
@@ -21,11 +21,12 @@ class ListOfFlights extends Component{
       dataFlight: [],
       display: "none"
     }
+    this.handleChange = this.handleChange.bind(this);
 
 }
 
   componentDidMount() {
-    fetch('https://myspacetravel.herokuapp.com/allFlights')
+    fetch('http://localhost:8080/allFlights')
       .then(response => response.json())
       .then(result =>  { 
         console.log(result)
@@ -37,7 +38,7 @@ class ListOfFlights extends Component{
   deleteFlight(flightId)
   {
     if(window.confirm("Operation is irreversible. Are you sure that you want to continue?")){
-      fetch('https://myspacetravel.herokuapp.com/deleteFlight'+flightId,
+      fetch('http://localhost:8080/deleteFlight'+flightId,
       {
         method:'DELETE'})
 
@@ -52,13 +53,13 @@ class ListOfFlights extends Component{
                       ? parseInt(event.target.value)
                       : event.target.value;
     const fieldName = event.target.name; // nazwa pola w formularzu
-    const updatedState = { [fieldName]:newValue}; // zapisuje każde pole z formularza
-    this.setState( updatedState);
+    const updatedState = { [fieldName]: newValue}; // zapisuje każde pole z formularza
+    this.setState(updatedState);
 }
 
 handleSubmit = event => {
   event.preventDefault();
-   fetch("https://myspacetravel.herokuapp.com/findFlight", {
+   fetch("http://localhost:8080/findFlight", {
       method: "POST",
       headers: {
           'Accept':'application/json',
@@ -81,6 +82,8 @@ handleSubmit = event => {
     return (
      
       <div className="mainTable" id="top">
+
+
         <Form  variant="light" className="searchingForm" onSubmit={this.handleSubmit}>
           <Form.Row>
               <Form.Group as={Col}  controlId="formPlaintextEmail">  
@@ -89,8 +92,7 @@ handleSubmit = event => {
               
                   <Form.Control type="text"
                       name="destination"
-                      id="destination"
-                      value={this.state.destination}
+                      // value={this.state.destination}
                       onChange={this.handleChange}
                          />
                   </Col>    
@@ -100,8 +102,7 @@ handleSubmit = event => {
                   <Form.Label column sm="10">Departure:</Form.Label>  
                   <Form.Control type="date"
                       name="startDate"
-                      id="startDate"
-                      value={this.state.startDate}
+                      // value={this.state.startDate}
                       onChange={this.handleChange}
                        />
                   </Col>
@@ -112,8 +113,7 @@ handleSubmit = event => {
                   
                   <Form.Control type="date"
                       name="finishDate"
-                      id="finishDate"
-                      value={this.state.finishDate}
+                      // value={this.state.finishDate}
                       onChange={this.handleChange}
                        />
                   </Col>
@@ -141,7 +141,7 @@ handleSubmit = event => {
           </thead>
           <tbody>
             {this.state.dataFlight.map(flight => (
-              <tr>
+              <tr key={flight.id}>
                 <td>{flight.id}</td>
                 <td>{flight.destination}</td>
                 <td>{flight.startDate}</td>
@@ -156,9 +156,9 @@ handleSubmit = event => {
                   <Link to={`/flightPassengers/${flight.id}`}>
                     <i  className="icon-user-plus" style={{ fontSize: "16px" }} />
                   </Link>
-                  <Link >
+                  <span >
                     <i  className="icon-trash-2" style={{ fontSize: "15px" }} onClick={() => {this.deleteFlight(flight.id)}} />
-                  </Link>
+                  </span>
                 </td>              
               </tr>
             ))}

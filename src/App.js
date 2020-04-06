@@ -5,14 +5,14 @@ import { Navbar} from "react-bootstrap";
 import { Nav} from "react-bootstrap";
 import { Route } from "react-router-dom";
 import Home from "./Home";
-import ListOfFlights from "./Flight/ListOfFlights";
-import ListOfPassengers from "./Passenger/ListOfPassengers";
-import AddUpdatePassenger from "./Passenger/AddUpdatePassenger";
-import AddUpdateFlight from "./Flight/AddUpdateFlight";
-import "./fontello/css/fontello.css"
-import PassengerFlights from "./Passenger/PassengerFlights";
-import FlightPassengers from "./Flight/FlightPassengers";
-import spaceLogo from './space-logo.png'
+import ListOfFlights from "./components/Flight/ListOfFlights";
+import ListOfPassengers from "./components/Passenger/ListOfPassengers";
+import AddUpdatePassenger from "./components/Passenger/AddUpdatePassenger";
+import AddUpdateFlight from "./components/Flight/AddUpdateFlight";
+import "./assets/fontello/css/fontello.css"
+import PassengerFlights from "./components/Passenger/PassengerFlights";
+import FlightPassengers from "./components/Flight/FlightPassengers";
+import spaceLogo from './assets/images/space-logo.png'
 
 
 function App() { // funkcyjny komponent bezstanowy
