@@ -9,7 +9,7 @@ import { Form } from "react-bootstrap";
 import { Col } from "react-bootstrap";
 import SearchFlight from "./SearchFlight";
 import {Link as MyLink} from 'react-scroll';
-import MyForm from '../Form/MyForm';
+
 
 
 class ListOfFlights extends Component{

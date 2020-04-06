@@ -4,18 +4,13 @@ import { Form } from "react-bootstrap";
 import { Col } from "react-bootstrap";
 import { Row } from "react-bootstrap"; 
 import { Button } from "react-bootstrap";
-
+import PassengerForm from "../Form/PassengerForm";
 
 class UpdatePassenger extends Component {
-    
-constructor(props) {
-    super(props)
-    this.state = new PassengerObject(); 
-    this.loadPassengerDetails();
-}
 
+    state = new PassengerObject(); 
 
-    loadPassengerDetails = event => {
+    componentDidMount(){
         
         if(this.props.match.params.id !== undefined){
               
@@ -71,85 +66,13 @@ constructor(props) {
     
     render() {
         return (
-            <div className="mainFormCenter">                        
-                <Form className="myForm" onSubmit={this.handleSubmit}>
-                    <Form.Group as={Row} controlId="formPlaintextEmail">  
-                        <Form.Label column sm="3">First name:</Form.Label>
-                        <Col sm="8">
-                        <Form.Control type="text"
-                            name="firstName"
-                            id="firstName"
-                            value={this.state.firstName}
-                            onChange={this.handleChange}
-                            required />
-                        </Col>
-                    
-                    </Form.Group>
-                    <Form.Group as={Row} controlId="formPlaintextEmail">  
-                        <Form.Label column sm="3">Last name:</Form.Label>
-                        <Col sm="8">
-                        <Form.Control type="text"
-                            name="lastName"
-                            id="lastName"
-                            value={this.state.lastName}
-                            onChange={this.handleChange}
-                            required />
-                        </Col>
-                    
-                    </Form.Group>
-                    <Form.Group as={Row} controlId="formPlaintextEmail">  
-                        <Form.Label column sm="3">Sex:</Form.Label>
-                        <Col sm="8">
-                        <Form.Control as="select" id="sex" name="sex"  value={this.state.sex} onChange={this.handleChange} required>
-                            <option defaultValue value="none">Select</option>
-                            <option value="MALE">Male</option>
-                            <option value="FEMALE">Female</option>
-                        </Form.Control>
-                        </Col>
-                    </Form.Group>
-                    <Form.Group as={Row} controlId="formPlaintextEmail">  
-                        <Form.Label column sm="3">Country:</Form.Label>
-                        <Col sm="8">
-                        <Form.Control type="text"
-                            name="country"
-                            id="country"
-                            value={this.state.country}
-                            onChange={this.handleChange}
-                            required />
-                        </Col>
-                    </Form.Group>
-                    <Form.Group as={Row} controlId="formPlaintextEmail">  
-                        <Form.Label column sm="3">Birth date:</Form.Label>
-                        <Col sm="8">
-                        <Form.Control type="date"
-                            name="birthDate"
-                            id="birthDate"
-                            value={this.state.birthDate}
-                            onChange={this.handleChange}
-                            required />
-                        </Col>
-                    </Form.Group>
-                    <Form.Group as={Row} controlId="formPlaintextEmail">  
-                        <Form.Label column sm="3">Notes:</Form.Label>
-                        <Col sm="8">
-                        <Form.Control as="textarea" rows="3" type="text"
-                            name="notes"
-                            id="notes"
-                            value={this.state.notes}
-                            onChange={this.handleChange}
-                                />
-                        </Col>
-                    </Form.Group>
-                    <Button className="myLink" onClick={() => this.props.history.push('/listOfPassengers')} variant="primary" type="button"  size="sm">
-                        Cancel
-                    </Button>&nbsp;
-                    <Button variant="primary" type="submit"  size="sm">
-                        Save passenger
-                    </Button>
-                </Form>
-            </div>
-        );
-       
+            <PassengerForm 
+                passenger={this.state}
+                onChange={this.handleChange}
+                onSubmit={this.handleSubmit}
+            />                    
+
+        ); 
     }
 }
 

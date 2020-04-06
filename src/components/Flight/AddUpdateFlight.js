@@ -4,7 +4,7 @@ import { Col } from "react-bootstrap";
 import { Row } from "react-bootstrap"; 
 import { Button } from "react-bootstrap";
 import { Form } from "react-bootstrap";
-import MyForm from '../Form/MyForm';
+import FlightForm from '../Form/FlightForm';
 import "../../assets/fontello/css/fontello.css"
 
 class UpdateFlight extends Component {
@@ -67,7 +67,7 @@ constructor(props) {
     
     render() {
         return (
-            <MyForm 
+            <FlightForm 
                 flight={this.state} 
                 onSubmit={this.handleSubmit} 
                 onChange={this.handleChange}

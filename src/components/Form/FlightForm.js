@@ -6,9 +6,7 @@ import { Form } from "react-bootstrap";
 import { Col } from "react-bootstrap";
 import { Row } from "react-bootstrap";
 
-const MyForm = ({
-        flight,
-    ...props }) => (
+const FlightForm = ({ flight, ...props }) => (
 
     <div className="mainFormCenter">
                 <Form className="myForm" {...props}>
@@ -77,4 +75,4 @@ const MyForm = ({
 
 );
 
-export default MyForm;
+export default FlightForm;
