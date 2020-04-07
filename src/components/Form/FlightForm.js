@@ -59,7 +59,6 @@ const FlightForm = ({ flight, ...props }) => (
                         <Col sm="8">
                         <Form.Control type="text"
                                name="ticketPrice"
-                               id="ticketPrice"
                                value={flight.ticketPrice}
                                {...props}
                                required />

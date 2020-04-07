@@ -18,25 +18,24 @@ constructor(props) {
         
         if(this.props.match.params.id !== undefined){
             
-            fetch('https://myspacetravel.herokuapp.com/flightPassengers'+this.props.match.params.id)
-                .then(response => response.json())
-                .then(result =>  { 
-            
-            console.log(result)
-            this.setState({ dataFlight: result })
-          
-          });
+            fetch('http://localhost:8080/flightPassengers'+this.props.match.params.id)
+            .then(response => response.json())
+            .then(result =>  { 
+                console.log(result)
+                this.setState({ dataFlight: result })
+            }).catch(error => console.log(error));
             
         }
     }
 
     componentDidMount() {
-        fetch('https://myspacetravel.herokuapp.com/allPassengers')
-          .then(response => response.json())
-          .then(result =>  { 
+        fetch('http://localhost:8080/allPassengers')
+        .then(response => response.json())
+        .then(result =>  { 
             console.log(result)
             this.setState({ dataPassenger: result })
-          });
+        })
+        .catch(error => console.log(error));
       }
 
       deletePassengerFromFlight = (myId) => {
@@ -46,14 +45,15 @@ constructor(props) {
             flightId: this.props.match.params.id
         })
 
-        const url = `https://myspacetravel.herokuapp.com/deleteFromFlight?${params.toString() }`
+        const url = `http://localhost:8080/deleteFromFlight?${params.toString() }`
 
         if((window.confirm("Operation is irreversible. Are you sure that you want to continue?"))){
 
             fetch(url, {
                 method: "DELETE" })
-            .then(result =>  console.log(result));
-
+            .then(result =>  console.log(result))
+            .catch(error => console.log(error));
+            
             const items = this.state.dataFlight.filter(item => item.id !== myId);
             this.setState({ dataFlight: items });
         }
@@ -75,11 +75,11 @@ constructor(props) {
             passengerId: this.state.passengerId,
             flightId: this.props.match.params.id
         })
-        const url = `https://myspacetravel.herokuapp.com/addPassengerToFlight?${params.toString() }`
+        const url = `http://localhost:8080/addPassengerToFlight?${params.toString() }`
        
         fetch(url)
-        .then(res => res.json())
-        .then(response => console.log(response));
+        .then(response => console.log(response))
+        .catch(error => console.log(error));
 
         this.props.history.push('/listOfFlights');
     }
@@ -131,7 +131,7 @@ constructor(props) {
                 <Form id="selectFlightPassengerForm" onSubmit={this.handleSubmit}>
                     <Form.Group as={Row} controlId="formPlaintextEmail">  
                         <Col sm="8">
-                        <Form.Control as="select" id="flight" name="flight" value={options.key} onChange={this.handleChange} required>
+                        <Form.Control as="select" name="flight" value={options.key} onChange={this.handleChange} required>
                         <option value="none">Select passenger</option>
                         {options}
                         </Form.Control>

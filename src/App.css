@@ -76,7 +76,7 @@ body{
 }
 
 
-#flightTable{
+.flightTable{
 
   float: left;
   position: relative;

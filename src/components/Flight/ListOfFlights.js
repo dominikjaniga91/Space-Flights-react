@@ -27,11 +27,12 @@ class ListOfFlights extends Component{
 
   componentDidMount() {
     fetch('http://localhost:8080/allFlights')
-      .then(response => response.json())
-      .then(result =>  { 
-        console.log(result)
-        this.setState({ dataFlight: result })
-      });
+    .then(response => response.json())
+    .then(result =>  { 
+      console.log(result)
+      this.setState({ dataFlight: result })
+    })
+    .catch(error => console.log(error));
   }
 
 
@@ -41,6 +42,8 @@ class ListOfFlights extends Component{
       fetch('http://localhost:8080/deleteFlight'+flightId,
       {
         method:'DELETE'})
+      .then(response => console.log(response))
+      .catch(error => console.log(error));
 
       const items = this.state.dataFlight.filter(item => item.id !== flightId);
       this.setState({ dataFlight: items });
@@ -69,13 +72,14 @@ handleSubmit = event => {
                               "startDate": this.state.startDate,
                               "finishDate": this.state.finishDate   })
   })
-      .then(res => res.json())
-      .then(result =>  { 
-      
-          console.log(result)
-          this.setState({ dataFlight: result })
-        
-        });
+  .then(res => res.json())
+  .then(result =>  { 
+  
+      console.log(result)
+      this.setState({ dataFlight: result })
+    
+  })
+  .catch(error => console.log(error));
 }
 
   render() {
@@ -126,7 +130,7 @@ handleSubmit = event => {
               </Button>
           </Form.Row>
         </Form>
-        <Table id="flightTable" striped bordered hover size="sm" variant="light" responsive="sm">
+        <Table className="flightTable" striped bordered hover size="sm" variant="light" responsive="sm">
           <thead>
             <tr>
               <th>ID</th>

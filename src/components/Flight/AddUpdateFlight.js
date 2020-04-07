@@ -20,7 +20,7 @@ constructor(props) {
             .then(result =>  {
                 console.log(result)
                 this.setState(result )
-            });
+            }).catch(error => console.log(error));
         }
     }
 
@@ -53,10 +53,9 @@ constructor(props) {
             },
             body: JSON.stringify(this.state)
         })
-            .then(res => res.json())
-            .then(response => {
-                console.log(response);
-            })
+        .then(response => {
+            console.log(response);
+        }).catch(error => console.log(error));
   
             this.props.history.push('/listOfFlights');
     }

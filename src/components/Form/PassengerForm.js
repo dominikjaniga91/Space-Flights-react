@@ -15,7 +15,6 @@ const FlightForm = ({ passenger, ...props }) => (
                         <Col sm="8">
                         <Form.Control type="text"
                             name="firstName"
-                            id="firstName"
                             value={passenger.firstName}
                             {...props}
                             required />
@@ -27,7 +26,6 @@ const FlightForm = ({ passenger, ...props }) => (
                         <Col sm="8">
                         <Form.Control type="text"
                             name="lastName"
-                            id="lastName"
                             value={passenger.lastName}
                             {...props}
                             required />
@@ -37,7 +35,7 @@ const FlightForm = ({ passenger, ...props }) => (
                     <Form.Group as={Row} controlId="formPlaintextEmail">  
                         <Form.Label column sm="3">Sex:</Form.Label>
                         <Col sm="8">
-                        <Form.Control as="select" id="sex" name="sex"  value={passenger.sex} {...props} required>
+                        <Form.Control as="select" name="sex"  value={passenger.sex} {...props} required>
                             <option defaultValue value="none">Select</option>
                             <option value="MALE">Male</option>
                             <option value="FEMALE">Female</option>
@@ -49,7 +47,6 @@ const FlightForm = ({ passenger, ...props }) => (
                         <Col sm="8">
                         <Form.Control type="text"
                             name="country"
-                            id="country"
                             value={passenger.country}
                             {...props}
                             required />
@@ -60,7 +57,6 @@ const FlightForm = ({ passenger, ...props }) => (
                         <Col sm="8">
                         <Form.Control type="date"
                             name="birthDate"
-                            id="birthDate"
                             value={passenger.birthDate}
                             {...props}
                             required />
@@ -71,7 +67,6 @@ const FlightForm = ({ passenger, ...props }) => (
                         <Col sm="8">
                         <Form.Control as="textarea" rows="3" type="text"
                             name="notes"
-                            id="notes"
                             value={passenger.notes}
                             {...props}
                                 />

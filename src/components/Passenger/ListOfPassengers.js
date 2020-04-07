@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
-import { Table } from "react-bootstrap";
 import '../../App.css';
-import { Link} from "react-router-dom";
 import { Button } from "react-bootstrap";
 import { Form } from "react-bootstrap";
 import { Col } from "react-bootstrap";
 import {Link as MyLink} from 'react-scroll';
 import SearchPassenger from './SearchPassenger'
+import PassengerTable from './Table/PassengerTable';
 
 class ListOfPassengers extends Component{
   
@@ -25,15 +24,17 @@ class ListOfPassengers extends Component{
         console.log(result)
         this.setState({ dataPassenger: result })
       
-      });
+      }).catch(error => console.log(error));
   }
 
-  deletePassenger(passengerId) {
+  deletePassenger = (passengerId)  => {
 
     if(window.confirm("Operation is irreversible. Are you sure that you want to continue?")){
       fetch('http://localhost:8080/deletePassenger'+passengerId,
       { method:'DELETE' })
-
+      .then(response => console.log(response))
+      .catch(error => console.log(error));
+      
       const items = this.state.dataPassenger.filter(item => item.id !== passengerId);
       this.setState({ dataPassenger: items });
     }
@@ -94,45 +95,10 @@ class ListOfPassengers extends Component{
               </Button>
           </Form.Row>
         </Form>
-      <Table className="passengerTable" striped bordered hover size="sm" variant="light" responsive="sm">
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>First name</th>
-            <th>Last name</th>
-            <th>Sex</th>
-            <th>Country</th>
-            <th>Notes</th>
-            <th>Birth date</th>
-            <th id="actionColumn">Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          {this.state.dataPassenger.map((passenger) => (
-            <tr key={passenger.id}>
-            <td>{passenger.id}</td>
-            <td>{passenger.firstName}</td>
-            <td>{passenger.lastName}</td>
-            <td>{passenger.sex}</td>
-            <td>{passenger.country}</td>
-            <td>{passenger.notes}</td>
-            <td>{passenger.birthDate}</td>
-            <td><Link to={`/updatePassenger/${passenger.id}`}>
-                  <i  className="icon-user" style={{ fontSize: "15px" }} />
-                </Link>
-                <Link to={`/passengerFlights/${passenger.id}`}>
-                  <i  className="icon-flight-1" style={{ fontSize: "16px" }} />
-                </Link>
-                <Link >
-                  <i  className="icon-trash-2" style={{ fontSize: "15px" }} onClick={() => {this.deletePassenger(passenger.id)}} />
-                </Link>
-          
-            </td>
-            </tr>
-          ))}
-          
-        </tbody>
-      </Table>
+        <PassengerTable 
+          dataPassenger={this.state.dataPassenger}
+          deletePassenger={this.deletePassenger}
+        />
       <span id="sideBar">
         <Button id="mainButton" href="/addPassenger">Add new passenger</Button><br></br><br></br>
         <Button id="mainButton" href="/addFlight">Add new flight</Button><br></br><br></br>

@@ -15,7 +15,7 @@ class UpdatePassenger extends Component {
             .then(result =>  {
                 console.log(result)
                 this.setState(result)
-            });
+            }).catch(error => console.log(error));
 
         }
     }
@@ -45,16 +45,14 @@ class UpdatePassenger extends Component {
          fetch(URL, {
             method: method,
             headers: {
-                'Accept':'application/json',
                 'Content-Type':'application/json'
             },
             body: JSON.stringify(this.state)
         })
             .then(res => res.json())
             .then(response => {
-                console.log("New passenger added do database");
                 console.log(response);
-            })
+            }).catch(error => console.log(error));
 
             this.props.history.push('/listOfPassengers');
     }
