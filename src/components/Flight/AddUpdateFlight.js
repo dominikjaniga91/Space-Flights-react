@@ -1,9 +1,5 @@
 import React, {Component} from 'react';
 import FlightObject from "./FlightObject";
-import { Col } from "react-bootstrap";
-import { Row } from "react-bootstrap"; 
-import { Button } from "react-bootstrap";
-import { Form } from "react-bootstrap";
 import FlightForm from '../Form/FlightForm';
 import "../../assets/fontello/css/fontello.css"
 

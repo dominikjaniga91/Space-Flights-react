@@ -11,15 +11,13 @@ import SearchPassenger from './SearchPassenger'
 
 class ListOfPassengers extends Component{
   
-  constructor(props) {
-    super(props)
-    this.state = new SearchPassenger();
-    this.state = {
+    state = new SearchPassenger();
+    state = {
       dataPassenger: []
     }
-}
 
-  async componentDidMount() {
+
+  componentDidMount() {
     fetch('http://localhost:8080/allPassengers')
       .then(response => response.json())
       .then(result =>  { 

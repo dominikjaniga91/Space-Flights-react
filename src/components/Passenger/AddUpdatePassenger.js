@@ -1,9 +1,5 @@
 import React, {Component} from 'react';
 import PassengerObject from "./PassengerObject";
-import { Form } from "react-bootstrap";
-import { Col } from "react-bootstrap";
-import { Row } from "react-bootstrap"; 
-import { Button } from "react-bootstrap";
 import PassengerForm from "../Form/PassengerForm";
 
 class UpdatePassenger extends Component {

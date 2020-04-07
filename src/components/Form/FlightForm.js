@@ -5,6 +5,7 @@ import { Button } from "react-bootstrap";
 import { Form } from "react-bootstrap";
 import { Col } from "react-bootstrap";
 import { Row } from "react-bootstrap";
+import MyButton from '../Button/MyButton';
 
 const FlightForm = ({ flight, ...props }) => (
 
@@ -64,12 +65,15 @@ const FlightForm = ({ flight, ...props }) => (
                                required />
                         </Col>
                     </Form.Group>
-                    <Button className="myLink" onClick={() => this.props.history.push('/listOfFlights')} variant="primary" type="button"  size="sm">
+                    {/* <Button className="myLink" onClick={() => this.props.history.push('/listOfFlights')} variant="primary" type="button"  size="sm">
                         Cancel
-                    </Button>&nbsp;
-                    <Button className="myLink" variant="primary"  type="submit"  size="sm">
+                    </Button>&nbsp; */}
+                    <MyButton onClick={() => this.props.history.push('/listOfFlights')} >Cancel</MyButton>
+                    &nbsp;
+                    <MyButton>Save flight</MyButton>
+                    {/* <Button className="myLink" variant="primary"  type="submit"  size="sm">
                         Save flight
-                    </Button>
+                    </Button> */}
                 </Form>
             </div>
 
