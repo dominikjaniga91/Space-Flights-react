@@ -4,7 +4,8 @@ import { Col } from "react-bootstrap";
 import { Row } from "react-bootstrap"; 
 import { Button } from "react-bootstrap";
 import { Table } from "react-bootstrap"; 
-
+import MyButton from '../Button/MyButton';
+import FlightTable from '../Flight/Table/FlightTable';
 
 class PassengerFlights extends Component {
     
@@ -124,7 +125,11 @@ constructor(props) {
                     ))}
                     
                     </tbody>
-                </Table>                
+                </Table>
+                <FlightTable 
+                    dataFlight={this.state.dataFlight}
+                    deleteFlight={this.deleteFlight}
+                />                
                 <Form id="selectFlightPassengerForm" onSubmit={this.handleSubmit}>
                     <Form.Group as={Row} controlId="formPlaintextEmail">  
                         <Col sm="8">
@@ -134,13 +139,7 @@ constructor(props) {
                         </Form.Control>
                         </Col>
                     </Form.Group>
-
-                    <Button className="myLink2" onClick={() => this.props.history.push('/passengers')} variant="primary" type="button"  size="sm">
-                        Cancel
-                    </Button>&nbsp;
-                    <Button className="myLink" variant="primary" type="submit"  size="sm">
-                        Add flight
-                    </Button>
+                
                 </Form>
                 
             </div>

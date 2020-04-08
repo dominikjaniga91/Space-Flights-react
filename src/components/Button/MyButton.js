@@ -9,11 +9,7 @@ const MyButton = ({ children, ...props }) => (
             variant="primary" 
             type="submit"  
             size="sm"
-            {...props}>
-                {children}
-        </Button>
-
-
+            {...props}> {children} </Button>
 
 );
 

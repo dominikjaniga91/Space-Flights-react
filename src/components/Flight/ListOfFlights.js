@@ -1,14 +1,14 @@
 
 import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
-import { Table } from "react-bootstrap";
 import '../../App.css';
-import { Link} from "react-router-dom";
 import { Button } from "react-bootstrap";
 import { Form } from "react-bootstrap";
 import { Col } from "react-bootstrap";
 import SearchFlight from "./SearchFlight";
 import {Link as MyLink} from 'react-scroll';
+import FlightTable from './Table/FlightTable';
+import MyButton from '../Button/MyButton';
 
 
 
@@ -36,8 +36,7 @@ class ListOfFlights extends Component{
   }
 
 
-  deleteFlight(flightId)
-  {
+  deleteFlight = (flightId) =>{
     if(window.confirm("Operation is irreversible. Are you sure that you want to continue?")){
       fetch('http://localhost:8080/deleteFlight'+flightId,
       {
@@ -122,53 +121,14 @@ handleSubmit = event => {
                        />
                   </Col>
               </Form.Group>
-              <Button className="searchButton" variant="primary" type="submit"  size="sm">
-                  Search
-              </Button>
-              <Button className="searchButton" onClick={() => this.componentDidMount()}variant="primary"   size="sm">
-                  Reset
-              </Button>
+              <MyButton>Search</MyButton>
+              <MyButton onClick={() => this.componentDidMount()}>Reset</MyButton>
           </Form.Row>
         </Form>
-        <Table className="flightTable" striped bordered hover size="sm" variant="light" responsive="sm">
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Destination</th>
-              <th>Departure</th>
-              <th>Arrival</th>
-              <th>Plane capacity</th>
-              <th>Number of passengers</th>
-              <th>Ticket price</th>
-              <th id="actionColumn">Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            {this.state.dataFlight.map(flight => (
-              <tr key={flight.id}>
-                <td>{flight.id}</td>
-                <td>{flight.destination}</td>
-                <td>{flight.startDate}</td>
-                <td>{flight.finishDate}</td>
-                <td>{flight.numberOfSeats}</td>
-                <td>{flight.amountOfPassengers}</td>
-                <td>{flight.ticketPrice}</td>
-                <td>
-                  <Link to={`/updateFlight/${flight.id}`}>
-                    <i  className="icon-sliders" style={{ fontSize: "15px" }} />
-                  </Link>
-                  <Link to={`/flightPassengers/${flight.id}`}>
-                    <i  className="icon-user-plus" style={{ fontSize: "16px" }} />
-                  </Link>
-                  <span >
-                    <i  className="icon-trash-2" style={{ fontSize: "15px" }} onClick={() => {this.deleteFlight(flight.id)}} />
-                  </span>
-                </td>              
-              </tr>
-            ))}
-            
-          </tbody>
-        </Table>
+        <FlightTable 
+          dataFlight={this.state.dataFlight}
+          deleteFlight={this.deleteFlight}
+          />
         <span id="sideBar">
           <Button id="mainButton" href="/addPassenger">Add new passenger</Button><br></br><br></br>
           <Button id="mainButton" href="/addFlight">Add new flight</Button><br></br><br></br>

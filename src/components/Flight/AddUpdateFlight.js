@@ -66,6 +66,7 @@ constructor(props) {
                 flight={this.state} 
                 onSubmit={this.handleSubmit} 
                 onChange={this.handleChange}
+                historyBack={() => this.props.history.push('/listOfFlights')}
             />
         );
     }

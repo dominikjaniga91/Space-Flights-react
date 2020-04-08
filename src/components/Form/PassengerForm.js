@@ -1,12 +1,13 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import '../../App.css';
-import { Button } from "react-bootstrap";
 import { Form } from "react-bootstrap";
 import { Col } from "react-bootstrap";
 import { Row } from "react-bootstrap";
+import MyButton from '../Button/MyButton';
 
-const FlightForm = ({ passenger, ...props }) => (
+
+const FlightForm = ({ passenger, historyBack, ...props }) => (
 
     <div className="mainFormCenter">
                 <Form className="myForm" {...props}>
@@ -72,12 +73,9 @@ const FlightForm = ({ passenger, ...props }) => (
                                 />
                         </Col>
                     </Form.Group>
-                    <Button className="myLink" onClick={() => this.props.history.push('/listOfPassengers')} variant="primary" type="button"  size="sm">
-                        Cancel
-                    </Button>&nbsp;
-                    <Button variant="primary" type="submit"  size="sm">
-                        Save passenger
-                    </Button>
+                    <MyButton onClick={historyBack} >Cancel</MyButton>
+                    &nbsp;
+                    <MyButton>Save</MyButton>
                 </Form>
             </div>
 

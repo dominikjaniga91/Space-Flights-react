@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import PassengerObject from "./PassengerObject";
 import PassengerForm from "../Form/PassengerForm";
+import { useHistory } from 'react-router';
 
 class UpdatePassenger extends Component {
 
@@ -19,7 +20,6 @@ class UpdatePassenger extends Component {
 
         }
     }
-
     
     handleChange = event => {
         const newValue = event.target.type === 'number'
@@ -64,6 +64,7 @@ class UpdatePassenger extends Component {
                 passenger={this.state}
                 onChange={this.handleChange}
                 onSubmit={this.handleSubmit}
+                historyBack={() => this.props.history.push('/listOfPassengers')}
             />                    
 
         ); 
