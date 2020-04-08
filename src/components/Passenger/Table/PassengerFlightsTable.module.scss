@@ -1,0 +1,19 @@
+
+.wrapper{
+    float: left;
+    overflow:auto; 
+    background-color: white;
+    margin-left: 20px;
+    padding: 20px 20px;
+    width:450px;
+    table{
+
+        position: relative;
+        color: black;
+        td {
+            border-collapse: inherit;
+            padding-top: 5px;
+            white-space: nowrap;
+        }
+    }
+}

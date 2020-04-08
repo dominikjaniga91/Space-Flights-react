@@ -1,26 +1,22 @@
 import React, {Component} from 'react';
-import { Form } from "react-bootstrap";
-import { Col } from "react-bootstrap";
-import { Row } from "react-bootstrap"; 
-import { Button } from "react-bootstrap";
 import { Table } from "react-bootstrap"; 
 import MyButton from '../Button/MyButton';
-import FlightTable from '../Flight/Table/FlightTable';
+import PassengerFlightsTable from './Table/PassengerFlightsTable';
 
 class PassengerFlights extends Component {
     
 constructor(props) {
     super(props)
-    this.state = {flightId: '', dataFlightPassenger: [], dataFlight: [] };
+    this.state = {flightsId: [], dataFlightPassenger: [], dataFlight: [] };
     this.passID();
 }
     
-    //load passenger
+    //load passenger's flights
     passID = () => {
         
         if(this.props.match.params.id !== undefined){
             
-            fetch('https://myspacetravel.herokuapp.com/passengerFlights'+this.props.match.params.id)
+            fetch('http://localhost:8080/passengerFlights'+this.props.match.params.id)
                 .then(response => response.json())
                 .then(result =>  { 
                     console.log(result)
@@ -31,7 +27,7 @@ constructor(props) {
     }
 
     componentDidMount() {
-        fetch('https://myspacetravel.herokuapp.com/allFlights')
+        fetch('http://localhost:8080/allFlights')
             .then(response => response.json())
             .then(result =>  { 
                 console.log(result)
@@ -45,7 +41,7 @@ constructor(props) {
             passengerId: this.props.match.params.id,
             flightId: myId
         })
-        const url = `https://myspacetravel.herokuapp.com/deleteFromPassenger?${params.toString() }`
+        const url = `http://localhost:8080/deleteFromPassenger?${params.toString() }`
       
         if((window.confirm("Operation is irreversible. Are you sure that you want to continue?"))){
             fetch(url, {
@@ -58,31 +54,37 @@ constructor(props) {
         }
     }
 
-    // aktualizacja stanu
-
-    handleChange = (event) => {
-        let flightId = Object.assign({}, this.state.flightId)
-        flightId = event.target.value;
-        this.setState({flightId});
-        
-    }
-
-    // zapis do backendu ('bazy danych')
-    handleSubmit = event => {
+    // zapis do backendu
+    saveFlights = event => {
         event.preventDefault();
 
         const params = new URLSearchParams({
-            passengerId: this.props.match.params.id,
-            flightId: this.state.flightId
+            passengerId: this.props.match.params.id
         })
         const url = `http://localhost:8080/addFlightToPassenger?${params.toString()}`
 
-        fetch(url)
-        .then(res => res.json())
+        fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type':'application/json'
+            },
+            mode: 'cors',
+            body: JSON.stringify(this.state.flightsId)
+        })
         .then(response => console.log(response))
         .catch(error => console.log(error));
 
-        this.props.history.push('/passengers');
+        this.props.history.push('/listOfPassengers');
+    }
+
+    addToFlight = (flightId) => {
+        
+        const newData = this.state.dataFlight.filter( flight => flight.id === flightId);
+
+        this.setState(prevState => ({ 
+            dataFlightPassenger: [...prevState.dataFlightPassenger, ...newData],
+            flightsId: [...prevState.flightsId, newData[0].id],
+        }));
     }
     
     render() {
@@ -113,7 +115,7 @@ constructor(props) {
                     </thead>
                     <tbody>
                     {this.state.dataFlightPassenger.map(flight => (
-                        <tr>
+                        <tr key={flight.id}>
                             <td>{flight.id}</td>
                             <td>{flight.destination}</td>
                             <td>{flight.startDate}</td>
@@ -126,22 +128,13 @@ constructor(props) {
                     
                     </tbody>
                 </Table>
-                <FlightTable 
+                <PassengerFlightsTable 
                     dataFlight={this.state.dataFlight}
-                    deleteFlight={this.deleteFlight}
-                />                
-                <Form id="selectFlightPassengerForm" onSubmit={this.handleSubmit}>
-                    <Form.Group as={Row} controlId="formPlaintextEmail">  
-                        <Col sm="8">
-                        <Form.Control as="select" name="flight" value={options.key} onChange={this.handleChange} required>
-                            <option value="none">Select flight</option>
-                            {options}
-                        </Form.Control>
-                        </Col>
-                    </Form.Group>
-                
-                </Form>
-                
+                    addToFlight={this.addToFlight}
+                />               
+                <MyButton onClick={() => this.props.history.push('/listOfPassengers')}>Cancel</MyButton>
+                    &nbsp;
+                <MyButton onClick={this.saveFlights}>Save</MyButton>
             </div>
         );
     }

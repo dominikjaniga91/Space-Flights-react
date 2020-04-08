@@ -1,10 +1,12 @@
 import React from 'react';
 import { Link} from "react-router-dom";
 import { Table } from "react-bootstrap";
+import styles from './PassengerTable.module.scss';
+
 
 const PassengerTable = ({dataPassenger, deletePassenger}) => (
 
-    <Table className="passengerTable" striped bordered hover size="sm" variant="light" responsive="sm">
+    <Table className={styles.table} striped bordered hover size="sm" variant="light" responsive="sm">
         <thead>
           <tr>
             <th>ID</th>
