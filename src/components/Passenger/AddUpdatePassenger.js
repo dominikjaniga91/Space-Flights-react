@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import PassengerObject from "./PassengerObject";
 import PassengerForm from "../Form/PassengerForm";
-import { useHistory } from 'react-router';
+
+const url = "http://localhost:8080/passengers/passenger"
 
 class UpdatePassenger extends Component {
 
@@ -11,7 +12,7 @@ class UpdatePassenger extends Component {
         
         if(this.props.match.params.id !== undefined){
               
-            fetch('http://localhost:8080/loadPassenger'+this.props.match.params.id)
+            fetch(url+"/"+this.props.match.params.id)
             .then(response => response.json())
             .then(result =>  {
                 console.log(result)
@@ -33,17 +34,8 @@ class UpdatePassenger extends Component {
     handleSubmit = event => {
         event.preventDefault();
 
-        let URL
-        let method
-        if(this.props.match.params.id !== undefined){
-            URL = "http://localhost:8080/updatePassenger";
-            method = "PUT";
-        }else{
-            URL = "http://localhost:8080/savePassenger";
-            method = "POST";
-        }
-         fetch(URL, {
-            method: method,
+         fetch(url, {
+            method: this.props.match.params.id !== undefined ? "PUT" : "POST",
             headers: {
                 'Content-Type':'application/json'
             },
@@ -53,10 +45,9 @@ class UpdatePassenger extends Component {
             .then(response => {
                 console.log(response);
             }).catch(error => console.log(error));
-
+            
             this.props.history.push('/listOfPassengers');
     }
-    
     
     render() {
         return (

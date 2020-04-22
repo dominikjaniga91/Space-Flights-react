@@ -77,7 +77,7 @@ constructor(props) {
         })
         const url = `http://localhost:8080/addPassengerToFlight?${params.toString() }`
        
-        fetch(url)
+        fetch(url, { method: "PUT" })
         .then(response => console.log(response))
         .catch(error => console.log(error));
 

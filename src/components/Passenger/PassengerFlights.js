@@ -89,16 +89,6 @@ constructor(props) {
     
     render() {
         
-        let arrayOfData = this.state.dataFlight;
-        let options = arrayOfData.map((data) =>
-                <option 
-                    key={data.id}
-                    value={data.id}
-                >
-                 {data.id}&nbsp;{data.destination}&nbsp;{data.startDate}&nbsp;{data.finishDate}&nbsp;{data.numberOfSeats}&nbsp;{data.ticketPrice}&nbsp;
-                </option>
-            );
-
         return (
             <div className="mainForm">
                 <h2>List of passenger's flights</h2>
