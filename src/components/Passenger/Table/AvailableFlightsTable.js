@@ -22,12 +22,12 @@ const AvailableFlightsTable = ({ dataFlight, addToFlight}) => (
         
                 <tbody>
                 {dataFlight.map((flight) => (
-                    <tr key={flight.id}>
+                   <tr key={flight.id}>
+                        <td>{flight.id}</td>
                         <td>{flight.destination}</td>
                         <td>{flight.startDate}</td>
                         <td>{flight.finishDate}</td>
                         <td>{flight.numberOfSeats}</td>
-                        <td>{flight.amountOfPassengers}</td>
                         <td>{flight.ticketPrice}</td>
                         <td><i className="icon-user-plus" style={{ position: "static" }} onClick={() => {addToFlight(flight.id)}}/></td>
                     </tr>

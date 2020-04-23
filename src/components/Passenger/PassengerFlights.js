@@ -11,11 +11,11 @@ class PassengerFlights extends Component {
 constructor(props) {
     super(props)
     this.state = {flightsId: [], dataFlightPassenger: [], dataFlight: [] };
-    this.passID();
+    this.loadPassengerFlights();
 }
     
     //load passenger's flights
-    passID = () => {
+    loadPassengerFlights = () => {
         
         if(this.props.match.params.id !== undefined){
             

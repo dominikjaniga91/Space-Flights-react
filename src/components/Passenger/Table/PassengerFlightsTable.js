@@ -26,8 +26,8 @@ const PassengerFlightsTable = ({dataFlightPassenger, deleteFlightFromPassenger})
                         <td>{flight.startDate}</td>
                         <td>{flight.finishDate}</td>
                         <td>{flight.numberOfSeats}</td>
-                        <td>{flight.ticketPrice}
-                        <i onClick={() => deleteFlightFromPassenger(flight.id)} className="icon-trash-2" style={{ fontSize: "15px" }} /></td>                        
+                        <td>{flight.ticketPrice}</td>
+                        <td><i onClick={() => deleteFlightFromPassenger(flight.id)} className="icon-trash-2" style={{ fontSize: "15px" }} /></td>                        
                     </tr>
                 ))}
                 

@@ -1,10 +1,11 @@
 import React from 'react';
 import { Link} from "react-router-dom";
 import { Table } from "react-bootstrap";
+import styles from './FlightTable.module.scss';
 
 const FlightTable = ({dataFlight, deleteFlight}) => (
 
-        <Table className="flightTable" striped bordered hover size="sm" variant="light" responsive="sm">
+        <Table className={styles.table} striped bordered hover size="sm" variant="light" responsive="sm">
           <thead>
             <tr>
               <th>ID</th>
@@ -14,7 +15,7 @@ const FlightTable = ({dataFlight, deleteFlight}) => (
               <th>Plane capacity</th>
               <th>Number of passengers</th>
               <th>Ticket price</th>
-              <th id="actionColumn">Action</th>
+              <th className={styles.column} >Action</th>
             </tr>
           </thead>
           <tbody>

@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
-import { Form } from "react-bootstrap";
-import { Col } from "react-bootstrap";
-import { Row } from "react-bootstrap"; 
-import { Button } from "react-bootstrap";
-import { Table } from "react-bootstrap"; 
+import FlightPassengersTable from './Table/FlightPassengersTable';
+import AvailablePassengersTable from './Table/AvailablePassengersTable';
+import styles from './FlightPassengers.module.scss';
+import MyButton from '../Button/MyButton';
+
 
 const url = "http://localhost:8080/flight/passengers/"
 
@@ -11,12 +11,12 @@ class FlightPassenges extends Component {
     
 constructor(props) {
     super(props)
-    this.state = {passengerId: '', dataPassenger: [], dataFlight: [] };
-    this.passID();
+    this.state = {passengers: [], dataPassenger: [], dataFlight: [] };
+    this.loadFlightsPassengers();
 }
     
     //load flights passengers
-    passID = event => {
+    loadFlightsPassengers = () => {
         
         if(this.props.match.params.id !== undefined){
             
@@ -40,9 +40,9 @@ constructor(props) {
         .catch(error => console.log(error));
       }
 
-      deletePassengerFromFlight = (myId) => {
+    deletePassengerFromFlight = (myId) => {
 
-         if((window.confirm("Are you sure  ?"))){
+        if((window.confirm("Are you sure  ?"))){
 
             fetch(url + this.props.match.params.id + "/" + myId, {
                 method: "DELETE" })
@@ -54,12 +54,27 @@ constructor(props) {
         }
     }
 
+    addToFlight = (passengerId) => {
+        
+        const newData = this.state.dataPassenger.filter( passenger => passenger.id === passengerId);
+
+        this.setState(prevState => ({ 
+            dataFlight: [...prevState.dataFlight, ...newData],
+            passengers: [...prevState.passengers, newData[0].id],
+        }));
+    }
 
     // zapis do backendu ('bazy danych')
-    handleSubmit = event => {
+    savePassengers = event => {
         event.preventDefault();
                
-        fetch(url + this.props.match.params.id , { method: "PUT" })
+        fetch(url + this.props.match.params.id, {
+            method: 'PUT',
+            headers: {
+                'Content-Type':'application/json'
+            },
+            body: JSON.stringify(this.state.passengers)
+        })
         .then(response => console.log(response))
         .catch(error => console.log(error));
 
@@ -67,68 +82,25 @@ constructor(props) {
     }
     
     render() {
-        
-        let arrayOfData = this.state.dataPassenger;
-        let options = arrayOfData.map((data) =>
-                <option 
-                    key={data.id}
-                    value={data.id}
-                >
-                 {data.id}&nbsp;{data.firstName}&nbsp;{data.lastName}&nbsp;{data.sex}&nbsp;{data.country}&nbsp;{data.birthDate}&nbsp;
-                </option>
-            );
-
+    
         return (
-            <div className="mainForm">
-                <h2>List of passengers</h2>
-                <Table id="mainTablePasssengerFlights" striped bordered hover size="sm" variant="light" responsive="sm" >
-
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>First name</th>
-                            <th>Last name</th>
-                            <th>Sex</th>
-                            <th>Country</th>
-                            <th>Notes</th>
-                            <th>Birth date</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    {this.state.dataFlight.map(passenger => (
-                        <tr>
-                            <td>{passenger.id}</td>
-                            <td>{passenger.firstName}</td>
-                            <td>{passenger.lastName}</td>
-                            <td>{passenger.sex}</td>
-                            <td>{passenger.country}</td>
-                            <td>{passenger.notes}</td>
-                            <td>{passenger.birthDate}
-                            <i onClick={() => this.deletePassengerFromFlight(passenger.id)} className="icon-trash-2" style={{ fontSize: "15px" }} /></td>                        
-                        </tr>
-                    ))}
-                    
-                    </tbody>
-                </Table>              
-                <Form id="selectFlightPassengerForm" onSubmit={this.handleSubmit}>
-                    <Form.Group as={Row} controlId="formPlaintextEmail">  
-                        <Col sm="8">
-                        <Form.Control as="select" name="flight" value={options.key} onChange={this.handleChange} required>
-                        <option value="none">Select passenger</option>
-                        {options}
-                        </Form.Control>
-                        </Col>
-                    </Form.Group>
-
-                    <Button className="myLink2" onClick={() => this.props.history.push('/listOfFlights')} variant="primary" type="button"  size="sm">
-                        Cancel
-                    </Button>&nbsp;
-                    <Button variant="primary" type="submit"  size="sm">
-                        Save passenger
-                    </Button>
-                </Form>
-                
-            </div>
+            <>
+                <div className={styles.table}>
+                    <FlightPassengersTable 
+                        dataFlight ={this.state.dataFlight}
+                        deletePassengerFromFlight = {this.deletePassengerFromFlight}
+                    /> 
+                     <AvailablePassengersTable 
+                        dataPassenger={this.state.dataPassenger}
+                        addToFlight={this.addToFlight}
+                    />   
+                </div>
+                <div className={styles.buttons}>
+                    <MyButton onClick={() => this.props.history.push('/listOfFlights')}>Cancel</MyButton>
+                        &nbsp;
+                    <MyButton onClick={this.savePassengers}>Save</MyButton>
+                </div>
+            </>
         );
     }
 }
