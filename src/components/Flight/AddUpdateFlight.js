@@ -3,6 +3,8 @@ import FlightObject from "./FlightObject";
 import FlightForm from '../Form/FlightForm';
 import "../../assets/fontello/css/fontello.css"
 
+const url = "http://localhost:8080/flight";
+
 class UpdateFlight extends Component {
     
 constructor(props) {
@@ -15,7 +17,7 @@ constructor(props) {
         
         if(this.props.match.params.id !== undefined){
               
-            fetch('http://localhost:8080/loadFlight'+this.props.match.params.id)
+            fetch(url+ '/' + this.props.match.params.id)
             .then(response => response.json())
             .then(result =>  {
                 console.log(result)
@@ -35,18 +37,9 @@ constructor(props) {
 
     handleSubmit = event => {
         event.preventDefault();
-        let URL
-        let method
-
-        if(this.props.match.params.id !== undefined){
-            URL = "http://localhost:8080/updateFlight";
-            method = "PUT";
-        }else{
-            URL = "http://localhost:8080/saveFlight";
-            method = "POST";
-        }
-         fetch(URL, {
-            method: method,
+    
+         fetch(url, {
+            method: this.props.match.params.id !== undefined ? "PUT" : "POST",
             headers: {
                 'Accept':'application/json',
                 'Content-Type':'application/json'

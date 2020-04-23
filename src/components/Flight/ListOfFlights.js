@@ -26,7 +26,7 @@ class ListOfFlights extends Component{
 }
 
   componentDidMount() {
-    fetch('http://localhost:8080/allFlights')
+    fetch('http://localhost:8080/flights')
     .then(response => response.json())
     .then(result =>  { 
       console.log(result)

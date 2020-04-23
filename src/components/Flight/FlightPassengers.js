@@ -5,6 +5,8 @@ import { Row } from "react-bootstrap";
 import { Button } from "react-bootstrap";
 import { Table } from "react-bootstrap"; 
 
+const url = "http://localhost:8080/flight/passengers/"
+
 class FlightPassenges extends Component {
     
 constructor(props) {
@@ -13,12 +15,12 @@ constructor(props) {
     this.passID();
 }
     
-    //load passenger
+    //load flights passengers
     passID = event => {
         
         if(this.props.match.params.id !== undefined){
             
-            fetch('http://localhost:8080/flightPassengers'+this.props.match.params.id)
+            fetch(url + this.props.match.params.id)
             .then(response => response.json())
             .then(result =>  { 
                 console.log(result)
@@ -29,7 +31,7 @@ constructor(props) {
     }
 
     componentDidMount() {
-        fetch('http://localhost:8080/allPassengers')
+        fetch('http://localhost:8080/passengers')
         .then(response => response.json())
         .then(result =>  { 
             console.log(result)
@@ -40,16 +42,9 @@ constructor(props) {
 
       deletePassengerFromFlight = (myId) => {
 
-        const params = new URLSearchParams({
-            passengerId: myId,
-            flightId: this.props.match.params.id
-        })
+         if((window.confirm("Are you sure  ?"))){
 
-        const url = `http://localhost:8080/deleteFromFlight?${params.toString() }`
-
-        if((window.confirm("Operation is irreversible. Are you sure that you want to continue?"))){
-
-            fetch(url, {
+            fetch(url + this.props.match.params.id + "/" + myId, {
                 method: "DELETE" })
             .then(result =>  console.log(result))
             .catch(error => console.log(error));
@@ -59,25 +54,12 @@ constructor(props) {
         }
     }
 
-    // aktualizacja stanu
-
-    handleChange = (event) => {
-        let passengerId = Object.assign({}, this.state.passengerId)
-        passengerId = event.target.value;
-        this.setState({passengerId});
-        
-    }
 
     // zapis do backendu ('bazy danych')
     handleSubmit = event => {
         event.preventDefault();
-        const params = new URLSearchParams({
-            passengerId: this.state.passengerId,
-            flightId: this.props.match.params.id
-        })
-        const url = `http://localhost:8080/addPassengerToFlight?${params.toString() }`
-       
-        fetch(url, { method: "PUT" })
+               
+        fetch(url + this.props.match.params.id , { method: "PUT" })
         .then(response => console.log(response))
         .catch(error => console.log(error));
 

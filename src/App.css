@@ -32,16 +32,6 @@ body{
 }
 
 
-.mainForm{
-
-  margin-top: 200px;
-  margin-right: auto;
-  margin-left: auto;
-  width: 1200px;
-  color:white;
-}
-
-
 .myForm {
   margin-left: 100px;
   text-align: center;
@@ -60,12 +50,6 @@ body{
   margin-left: -137px;
 }
 
-#mainTablePasssengerFlights{
-
-  width: 700px;
-  float: left;
-  position: relative;
-}
 
 
 .flightTable{

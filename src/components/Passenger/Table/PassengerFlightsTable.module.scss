@@ -4,16 +4,22 @@
     overflow:auto; 
     background-color: white;
     margin-left: 20px;
-    padding: 20px 20px;
-    width:450px;
-    table{
+    width: 35vw;
+    font-size: 0.95rem;
+}
 
-        position: relative;
-        color: black;
-        td {
-            border-collapse: inherit;
-            padding-top: 5px;
-            white-space: nowrap;
-        }
-    }
+.table{
+
+    width: 100%;
+    float: left;
+    position: relative;
+  }
+
+  .header{
+    line-height: 2vw;
+    font-size: 1.4rem;
+    width: 35vw;
+    height: 2vw;
+    text-align: center;
+    background-color: hsl(195, 100%, 60%) ;
 }

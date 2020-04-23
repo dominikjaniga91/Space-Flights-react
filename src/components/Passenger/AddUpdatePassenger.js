@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import PassengerObject from "./PassengerObject";
 import PassengerForm from "../Form/PassengerForm";
 
-const url = "http://localhost:8080/passengers/passenger"
+const url = "http://localhost:8080/passenger"
 
 class UpdatePassenger extends Component {
 

@@ -1,0 +1,28 @@
+
+.wrapper{
+    float: left;
+    overflow:auto; 
+    background-color: white;
+    margin-left: 1vw;
+    width: 33vw;
+    font-size: 0.95rem;
+    table{
+
+        position: relative;
+        color: black;
+        td {
+            border-collapse: inherit;
+            padding-top: 5px;
+            white-space: nowrap;
+        }
+    }
+}
+
+.header{
+    line-height: 2vw;
+    font-size: 1.4rem;
+    width: 33vw;
+    height: 2vw;
+    text-align: center;
+    background-color: hsl(195, 100%, 60%) ;
+}

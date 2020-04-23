@@ -17,7 +17,7 @@ class ListOfPassengers extends Component{
 
 
   componentDidMount() {
-    fetch('http://localhost:8080/allPassengers')
+    fetch('http://localhost:8080/passengers')
       .then(response => response.json())
       .then(result =>  { 
 
@@ -29,8 +29,8 @@ class ListOfPassengers extends Component{
 
   deletePassenger = (passengerId)  => {
 
-    if(window.confirm("Operation is irreversible. Are you sure that you want to continue?")){
-      fetch('http://localhost:8080/deletePassenger'+passengerId,
+    if(window.confirm("Are you sure ?")){
+      fetch('http://localhost:8080/passenger/'+passengerId,
       { method:'DELETE' })
       .then(response => console.log(response))
       .catch(error => console.log(error));
