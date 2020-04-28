@@ -10,7 +10,7 @@ import {Link as MyLink} from 'react-scroll';
 import FlightTable from './Table/FlightTable';
 import MyButton from '../Button/MyButton';
 
-
+const token = sessionStorage.getItem("jwt");
 
 class ListOfFlights extends Component{
 
@@ -26,7 +26,9 @@ class ListOfFlights extends Component{
 }
 
   componentDidMount() {
-    fetch('http://localhost:8080/flights')
+    fetch('http://localhost:8080/flights', {
+      headers: {'Authorization': token}
+    })
     .then(response => response.json())
     .then(result =>  { 
       console.log(result)
