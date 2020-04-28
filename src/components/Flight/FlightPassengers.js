@@ -3,9 +3,9 @@ import FlightPassengersTable from './Table/FlightPassengersTable';
 import AvailablePassengersTable from './Table/AvailablePassengersTable';
 import styles from './FlightPassengers.module.scss';
 import MyButton from '../Button/MyButton';
+import { endpoints } from '../../endpoints';
+import { routes } from '../../routes';
 
-
-const url = "http://localhost:8080/flight/passengers/"
 
 class FlightPassenges extends Component {
     
@@ -20,7 +20,7 @@ constructor(props) {
         
         if(this.props.match.params.id !== undefined){
             
-            fetch(url + this.props.match.params.id)
+            fetch(endpoints.flightPassengers + this.props.match.params.id)
             .then(response => response.json())
             .then(result =>  { 
                 console.log(result)
@@ -31,7 +31,7 @@ constructor(props) {
     }
 
     componentDidMount() {
-        fetch('http://localhost:8080/passengers')
+        fetch(endpoints.passengers)
         .then(response => response.json())
         .then(result =>  { 
             console.log(result)
@@ -44,7 +44,7 @@ constructor(props) {
 
         if((window.confirm("Are you sure  ?"))){
 
-            fetch(url + this.props.match.params.id + "/" + myId, {
+            fetch(endpoints.flightPassengers + this.props.match.params.id + "/" + myId, {
                 method: "DELETE" })
             .then(result =>  console.log(result))
             .catch(error => console.log(error));
@@ -68,7 +68,7 @@ constructor(props) {
     savePassengers = event => {
         event.preventDefault();
                
-        fetch(url + this.props.match.params.id, {
+        fetch(endpoints.flightPassengers + this.props.match.params.id, {
             method: 'PUT',
             headers: {
                 'Content-Type':'application/json'
@@ -78,7 +78,7 @@ constructor(props) {
         .then(response => console.log(response))
         .catch(error => console.log(error));
 
-        this.props.history.push('/listOfFlights');
+        this.props.history.push(routes.flights);
     }
     
     render() {
@@ -96,7 +96,7 @@ constructor(props) {
                     />   
                 </div>
                 <div className={styles.buttons}>
-                    <MyButton onClick={() => this.props.history.push('/listOfFlights')}>Cancel</MyButton>
+                    <MyButton onClick={() => this.props.history.push(routes.flights)}>Cancel</MyButton>
                         &nbsp;
                     <MyButton onClick={this.savePassengers}>Save</MyButton>
                 </div>

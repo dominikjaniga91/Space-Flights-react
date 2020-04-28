@@ -9,7 +9,8 @@ import SearchFlight from "./SearchFlight";
 import {Link as MyLink} from 'react-scroll';
 import FlightTable from './Table/FlightTable';
 import MyButton from '../Button/MyButton';
-
+import { endpoints } from '../../endpoints';
+import { routes } from '../../routes';
 
 
 class ListOfFlights extends Component{
@@ -28,7 +29,7 @@ class ListOfFlights extends Component{
   componentDidMount() {
     const token = sessionStorage.getItem("jwt");
     console.log(token);
-    fetch('http://localhost:8080/api/flights', {
+    fetch(endpoints.flights, {
       headers: {'Authorization': token}
     })
     .then(response => response.json())
@@ -42,7 +43,7 @@ class ListOfFlights extends Component{
 
   deleteFlight = (flightId) =>{
     if(window.confirm("Operation is irreversible. Are you sure that you want to continue?")){
-      fetch('http://localhost:8080/deleteFlight'+flightId,
+      fetch(endpoints.flight +flightId,
       {
         method:'DELETE'})
       .then(response => console.log(response))
@@ -65,7 +66,7 @@ class ListOfFlights extends Component{
 
 handleSubmit = event => {
   event.preventDefault();
-   fetch("http://localhost:8080/findFlight", {
+   fetch(endpoints.searchFlight, {
       method: "POST",
       headers: {
           'Accept':'application/json',
@@ -134,8 +135,8 @@ handleSubmit = event => {
           deleteFlight={this.deleteFlight}
           />
         <span id="sideBar">
-          <Button id="mainButton" href="/addPassenger">Add new passenger</Button><br></br><br></br>
-          <Button id="mainButton" href="/addFlight">Add new flight</Button><br></br><br></br>
+          <Button id="mainButton" href={routes.newPassenger}>Add new passenger</Button><br></br><br></br>
+          <Button id="mainButton" href={routes.newFlight}>Add new flight</Button><br></br><br></br>
         </span>
           <MyLink
           activeClass="active" 

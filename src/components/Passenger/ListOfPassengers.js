@@ -7,6 +7,9 @@ import { Col } from "react-bootstrap";
 import {Link as MyLink} from 'react-scroll';
 import SearchPassenger from './SearchPassenger'
 import PassengerTable from './Table/PassengerTable';
+import { endpoints } from '../../endpoints';
+import { routes } from '../../routes';
+
 
 class ListOfPassengers extends Component{
   
@@ -17,7 +20,7 @@ class ListOfPassengers extends Component{
 
 
   componentDidMount() {
-    fetch('http://localhost:8080/passengers')
+    fetch(endpoints.passengers)
       .then(response => response.json())
       .then(result =>  { 
 
@@ -30,8 +33,8 @@ class ListOfPassengers extends Component{
   deletePassenger = (passengerId)  => {
 
     if(window.confirm("Are you sure ?")){
-      fetch('http://localhost:8080/passenger/'+passengerId,
-      { method:'DELETE' })
+      fetch(endpoints.passenger +passengerId,
+        { method:'DELETE' })
       .then(response => console.log(response))
       .catch(error => console.log(error));
       
@@ -100,8 +103,8 @@ class ListOfPassengers extends Component{
           deletePassenger={this.deletePassenger}
         />
       <span id="sideBar">
-        <Button id="mainButton" href="/addPassenger">Add new passenger</Button><br></br><br></br>
-        <Button id="mainButton" href="/addFlight">Add new flight</Button><br></br><br></br>
+        <Button id="mainButton" href={routes.newPassenger} >Add new passenger</Button><br></br><br></br>
+        <Button id="mainButton" href={routes.newFlight}>Add new flight</Button><br></br><br></br>
  
       </span>
       <MyLink

@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
-import PassengerObject from "./PassengerObject";
-import PassengerForm from "../Form/PassengerForm";
-
-const url = "http://localhost:8080/passenger"
+import PassengerObject from './PassengerObject';
+import PassengerForm from '../Form/PassengerForm';
+import { endpoints } from '../../endpoints';
+import { routes } from '../../routes';
 
 class UpdatePassenger extends Component {
 
@@ -12,7 +12,7 @@ class UpdatePassenger extends Component {
         
         if(this.props.match.params.id !== undefined){
               
-            fetch(url+"/"+this.props.match.params.id)
+            fetch(endpoints.passenger +this.props.match.params.id)
             .then(response => response.json())
             .then(result =>  {
                 console.log(result)
@@ -34,7 +34,7 @@ class UpdatePassenger extends Component {
     handleSubmit = event => {
         event.preventDefault();
 
-         fetch(url, {
+         fetch( endpoints.passenger , {
             method: this.props.match.params.id !== undefined ? "PUT" : "POST",
             headers: {
                 'Content-Type':'application/json'
@@ -46,7 +46,7 @@ class UpdatePassenger extends Component {
                 console.log(response);
             }).catch(error => console.log(error));
             
-            this.props.history.push('/listOfPassengers');
+            this.props.history.push(routes.passengers);
     }
     
     render() {
@@ -55,7 +55,7 @@ class UpdatePassenger extends Component {
                 passenger={this.state}
                 onChange={this.handleChange}
                 onSubmit={this.handleSubmit}
-                historyBack={() => this.props.history.push('/listOfPassengers')}
+                historyBack={() => this.props.history.push(routes.passengers)}
             />                    
 
         ); 

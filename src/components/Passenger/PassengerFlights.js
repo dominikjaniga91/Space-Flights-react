@@ -3,8 +3,9 @@ import MyButton from '../Button/MyButton';
 import AvailableFlightsTable from './Table/AvailableFlightsTable';
 import PassengerFlightsTable from './Table/PassengerFlightsTable';
 import styles from './PassengerFlights.module.scss'
+import { endpoints } from '../../endpoints';
+import { routes } from '../../routes';
 
-const url = "http://localhost:8080/passenger/flights/";
 
 class PassengerFlights extends Component {
     
@@ -19,7 +20,7 @@ constructor(props) {
         
         if(this.props.match.params.id !== undefined){
             
-            fetch(url + this.props.match.params.id)
+            fetch(endpoints.passengerFlights + this.props.match.params.id)
                 .then(response => response.json())
                 .then(result =>  { 
                     console.log(result)
@@ -30,7 +31,7 @@ constructor(props) {
     }
 
     componentDidMount() {
-        fetch('http://localhost:8080/flights')
+        fetch(endpoints.flights)
             .then(response => response.json())
             .then(result =>  { 
                 console.log(result)
@@ -38,15 +39,15 @@ constructor(props) {
             }).catch(error => console.log(error));
     }
 
-    deleteFlightFromPassenger = (myId) => {
+    deleteFlightFromPassenger = (flightId) => {
 
         if((window.confirm(" Are you sure ?"))){
-            fetch(url + this.props.match.params.id + "/" + myId , {
+            fetch(endpoints.passengerFlights + this.props.match.params.id + "/" + flightId , {
                 method: "DELETE" })
             .then(result => console.log(result))
             .catch(error => console.log(error));
 
-            const items = this.state.dataFlightPassenger.filter(item => item.id !== myId);
+            const items = this.state.dataFlightPassenger.filter(item => item.id !== flightId);
             this.setState({ dataFlightPassenger: items });
         }
     }
@@ -54,7 +55,7 @@ constructor(props) {
     // zapis do backendu
     saveFlights = event => {
         event.preventDefault();
-        fetch(url + this.props.match.params.id, {
+        fetch(endpoints.passengerFlights + this.props.match.params.id, {
             method: 'PUT',
             headers: {
                 'Content-Type':'application/json'
@@ -65,7 +66,7 @@ constructor(props) {
         .then(response => console.log(response))
         .catch(error => console.log(error));
 
-        this.props.history.push('/listOfPassengers');
+        this.props.history.push(routes.passengers);
     }
 
     addToFlight = (flightId) => {
@@ -94,7 +95,7 @@ constructor(props) {
                     
                 </div>
                 <div className={styles.buttons}>
-                    <MyButton onClick={() => this.props.history.push('/listOfPassengers')}>Cancel</MyButton>
+                    <MyButton onClick={() => this.props.history.push(routes.passengers)}>Cancel</MyButton>
                         &nbsp;
                     <MyButton onClick={this.saveFlights}>Save</MyButton>
                 </div>

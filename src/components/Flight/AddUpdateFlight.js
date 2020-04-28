@@ -2,8 +2,9 @@ import React, {Component} from 'react';
 import FlightObject from "./FlightObject";
 import FlightForm from '../Form/FlightForm';
 import "../../assets/fontello/css/fontello.css"
+import { endpoints } from '../../endpoints';
+import { routes } from '../../routes';
 
-const url = "http://localhost:8080/flight";
 
 class UpdateFlight extends Component {
     
@@ -17,7 +18,7 @@ constructor(props) {
         
         if(this.props.match.params.id !== undefined){
               
-            fetch(url+ '/' + this.props.match.params.id)
+            fetch(endpoints.flight + this.props.match.params.id)
             .then(response => response.json())
             .then(result =>  {
                 console.log(result)
@@ -38,7 +39,7 @@ constructor(props) {
     handleSubmit = event => {
         event.preventDefault();
     
-         fetch(url, {
+         fetch(endpoints.flight, {
             method: this.props.match.params.id !== undefined ? "PUT" : "POST",
             headers: {
                 'Accept':'application/json',
@@ -50,7 +51,7 @@ constructor(props) {
             console.log(response);
         }).catch(error => console.log(error));
   
-            this.props.history.push('/listOfFlights');
+            this.props.history.push(routes.flights);
     }
     
     render() {
@@ -59,7 +60,7 @@ constructor(props) {
                 flight={this.state} 
                 onSubmit={this.handleSubmit} 
                 onChange={this.handleChange}
-                historyBack={() => this.props.history.push('/listOfFlights')}
+                historyBack={() => this.props.history.push(routes.flights)}
             />
         );
     }
