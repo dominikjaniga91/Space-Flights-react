@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import { BrowserRouter} from "react-router-dom";
+import { BrowserRouter, Switch} from "react-router-dom";
 import { Navbar} from "react-bootstrap";
 import { Nav} from "react-bootstrap";
 import { Route } from "react-router-dom";
@@ -13,7 +13,8 @@ import "./assets/fontello/css/fontello.css"
 import PassengerFlights from "./components/Passenger/PassengerFlights";
 import FlightPassengers from "./components/Flight/FlightPassengers";
 import spaceLogo from './assets/images/space-logo.png'
-
+import Login from './components/Authentication/Login';
+import { routes } from './routes';
 
 function App() { // funkcyjny komponent bezstanowy
  
@@ -30,15 +31,18 @@ function App() { // funkcyjny komponent bezstanowy
           </Navbar>
         
      <div id='tresc'>
-          <Route path='/' exact component={Home} />
-          <Route path='/listOfFlights' exact component={ListOfFlights} />
-          <Route path='/listOfPassengers' exact component={ListOfPassengers} />
-          <Route path='/addPassenger' exact component={AddUpdatePassenger} />
-          <Route path='/updatePassenger/:id' exact component={AddUpdatePassenger} />
-          <Route path='/updateFlight/:id' exact component={AddUpdateFlight} />
-          <Route path='/addFlight' exact component={AddUpdateFlight} />
-          <Route path='/passengerFlights/:id' exact component={PassengerFlights} />
-          <Route path='/flightPassengers/:id' exact component={FlightPassengers} />
+       <Switch>
+          <Route path={routes.home} exact component={Home} />
+          <Route path={routes.login} component={Login} />
+          <Route path={routes.flights} exact component={ListOfFlights} />
+          <Route path={routes.passengers} exact component={ListOfPassengers} />
+          <Route path={routes.newPassenger} exact component={AddUpdatePassenger} />
+          <Route path={routes.updatePassenger} exact component={AddUpdatePassenger} />
+          <Route path={routes.newFlight} exact component={AddUpdateFlight} />
+          <Route path={routes.updateFlight} component={AddUpdateFlight} />
+          <Route path={routes.passengerFlights}  component={PassengerFlights} />
+          <Route path={routes.flightPassengers}  component={FlightPassengers} />
+        </Switch>
       </div>
   
  
