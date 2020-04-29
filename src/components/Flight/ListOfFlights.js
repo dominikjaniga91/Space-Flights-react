@@ -11,7 +11,7 @@ import FlightTable from './Table/FlightTable';
 import MyButton from '../Button/MyButton';
 import { endpoints } from '../../endpoints';
 import { routes } from '../../routes';
-
+import Cookie from 'js-cookie';
 
 class ListOfFlights extends Component{
 
@@ -27,7 +27,7 @@ class ListOfFlights extends Component{
 }
 
   componentDidMount() {
-    const token = sessionStorage.getItem("jwt");
+    const token = Cookie.get("jwt");
     console.log(token);
     fetch(endpoints.flights, {
       headers: {'Authorization': token}
