@@ -3,6 +3,9 @@ import PassengerObject from './PassengerObject';
 import PassengerForm from '../Form/PassengerForm';
 import { endpoints } from '../../endpoints';
 import { routes } from '../../routes';
+import Cookie from 'js-cookie';
+
+const token = Cookie.get("jwt");
 
 class UpdatePassenger extends Component {
 
@@ -12,7 +15,10 @@ class UpdatePassenger extends Component {
         
         if(this.props.match.params.id !== undefined){
               
-            fetch(endpoints.passenger +this.props.match.params.id)
+            fetch(endpoints.passenger +this.props.match.params.id,
+            {
+                headers: {'Authorization': token}
+            })
             .then(response => response.json())
             .then(result =>  {
                 console.log(result)
@@ -37,7 +43,8 @@ class UpdatePassenger extends Component {
          fetch( endpoints.passenger , {
             method: this.props.match.params.id !== undefined ? "PUT" : "POST",
             headers: {
-                'Content-Type':'application/json'
+                'Content-Type':'application/json',
+                'Authorization': token
             },
             body: JSON.stringify(this.state)
         })

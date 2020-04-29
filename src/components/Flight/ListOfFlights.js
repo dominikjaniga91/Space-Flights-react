@@ -28,7 +28,6 @@ class ListOfFlights extends Component{
 
   componentDidMount() {
     const token = Cookie.get("jwt");
-    console.log(token);
     fetch(endpoints.flights, {
       headers: {'Authorization': token}
     })

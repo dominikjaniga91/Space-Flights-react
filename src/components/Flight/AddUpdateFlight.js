@@ -4,21 +4,25 @@ import FlightForm from '../Form/FlightForm';
 import "../../assets/fontello/css/fontello.css"
 import { endpoints } from '../../endpoints';
 import { routes } from '../../routes';
+import Cookie from 'js-cookie';
 
+const token = Cookie.get("jwt");
 
 class UpdateFlight extends Component {
     
 constructor(props) {
     super(props)
     this.state = new FlightObject(); 
-    this.loadFlightDetails();
-}
+};
     
-    loadFlightDetails = event => {
-        
+    componentDidMount() {
+       
         if(this.props.match.params.id !== undefined){
               
-            fetch(endpoints.flight + this.props.match.params.id)
+            fetch(endpoints.flight + this.props.match.params.id,
+            {
+                headers: {'Authorization': token}
+            })
             .then(response => response.json())
             .then(result =>  {
                 console.log(result)
@@ -43,7 +47,8 @@ constructor(props) {
             method: this.props.match.params.id !== undefined ? "PUT" : "POST",
             headers: {
                 'Accept':'application/json',
-                'Content-Type':'application/json'
+                'Content-Type':'application/json',
+                'Authorization': token
             },
             body: JSON.stringify(this.state)
         })

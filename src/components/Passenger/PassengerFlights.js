@@ -5,7 +5,9 @@ import PassengerFlightsTable from './Table/PassengerFlightsTable';
 import styles from './PassengerFlights.module.scss'
 import { endpoints } from '../../endpoints';
 import { routes } from '../../routes';
+import Cookie from 'js-cookie';
 
+const token = Cookie.get("jwt");
 
 class PassengerFlights extends Component {
     
@@ -20,30 +22,38 @@ constructor(props) {
         
         if(this.props.match.params.id !== undefined){
             
-            fetch(endpoints.passengerFlights + this.props.match.params.id)
-                .then(response => response.json())
-                .then(result =>  { 
-                    console.log(result)
-                    this.setState({ dataFlightPassenger: result })
+            fetch(endpoints.passengerFlights + this.props.match.params.id,
+            {
+                headers: {'Authorization': token}
+            })    
+            .then(response => response.json())
+            .then(result =>  { 
+                console.log(result)
+                this.setState({ dataFlightPassenger: result })
              }).catch(error => console.log(error));
             
         }
     }
 
     componentDidMount() {
-        fetch(endpoints.flights)
-            .then(response => response.json())
-            .then(result =>  { 
-                console.log(result)
-                this.setState({ dataFlight: result })
-            }).catch(error => console.log(error));
+        fetch(endpoints.flights,
+        {
+            headers: {'Authorization': token}
+        })
+        .then(response => response.json())
+        .then(result =>  { 
+            console.log(result)
+            this.setState({ dataFlight: result })
+        }).catch(error => console.log(error));
     }
 
     deleteFlightFromPassenger = (flightId) => {
 
         if((window.confirm(" Are you sure ?"))){
             fetch(endpoints.passengerFlights + this.props.match.params.id + "/" + flightId , {
-                method: "DELETE" })
+                method: "DELETE",
+                headers: {'Authorization': token}
+             })
             .then(result => console.log(result))
             .catch(error => console.log(error));
 
@@ -58,7 +68,8 @@ constructor(props) {
         fetch(endpoints.passengerFlights + this.props.match.params.id, {
             method: 'PUT',
             headers: {
-                'Content-Type':'application/json'
+                'Content-Type':'application/json',
+                'Authorization': token
             },
             mode: 'cors',
             body: JSON.stringify(this.state.flightsId)

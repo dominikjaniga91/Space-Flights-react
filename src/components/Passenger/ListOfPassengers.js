@@ -9,7 +9,9 @@ import SearchPassenger from './SearchPassenger'
 import PassengerTable from './Table/PassengerTable';
 import { endpoints } from '../../endpoints';
 import { routes } from '../../routes';
+import Cookie from 'js-cookie';
 
+const token = Cookie.get("jwt");
 
 class ListOfPassengers extends Component{
   
@@ -20,7 +22,10 @@ class ListOfPassengers extends Component{
 
 
   componentDidMount() {
-    fetch(endpoints.passengers)
+    fetch(endpoints.passengers,
+      {
+        headers: {'Authorization': token}
+      }) 
       .then(response => response.json())
       .then(result =>  { 
 
@@ -34,7 +39,10 @@ class ListOfPassengers extends Component{
 
     if(window.confirm("Are you sure ?")){
       fetch(endpoints.passenger +passengerId,
-        { method:'DELETE' })
+      { 
+        method:'DELETE',
+        headers: {'Authorization': token}
+      })
       .then(response => console.log(response))
       .catch(error => console.log(error));
       

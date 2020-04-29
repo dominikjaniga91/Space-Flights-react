@@ -5,7 +5,9 @@ import styles from './FlightPassengers.module.scss';
 import MyButton from '../Button/MyButton';
 import { endpoints } from '../../endpoints';
 import { routes } from '../../routes';
+import Cookie from 'js-cookie';
 
+const token = Cookie.get("jwt");
 
 class FlightPassenges extends Component {
     
@@ -20,7 +22,10 @@ constructor(props) {
         
         if(this.props.match.params.id !== undefined){
             
-            fetch(endpoints.flightPassengers + this.props.match.params.id)
+            fetch(endpoints.flightPassengers + this.props.match.params.id,
+            {
+                headers: {'Authorization': token}
+            })
             .then(response => response.json())
             .then(result =>  { 
                 console.log(result)
@@ -31,7 +36,11 @@ constructor(props) {
     }
 
     componentDidMount() {
-        fetch(endpoints.passengers)
+        
+        fetch(endpoints.passengers,
+        {
+            headers: {'Authorization': token}
+        })
         .then(response => response.json())
         .then(result =>  { 
             console.log(result)
@@ -41,11 +50,13 @@ constructor(props) {
       }
 
     deletePassengerFromFlight = (myId) => {
-
+        
         if((window.confirm("Are you sure  ?"))){
 
             fetch(endpoints.flightPassengers + this.props.match.params.id + "/" + myId, {
-                method: "DELETE" })
+                method: "DELETE",
+                headers: {'Authorization': token} 
+            })
             .then(result =>  console.log(result))
             .catch(error => console.log(error));
             
@@ -67,11 +78,12 @@ constructor(props) {
     // zapis do backendu ('bazy danych')
     savePassengers = event => {
         event.preventDefault();
-               
+        
         fetch(endpoints.flightPassengers + this.props.match.params.id, {
             method: 'PUT',
             headers: {
-                'Content-Type':'application/json'
+                'Content-Type':'application/json',
+                'Authorization': token
             },
             body: JSON.stringify(this.state.passengers)
         })
