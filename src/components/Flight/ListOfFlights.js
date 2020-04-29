@@ -12,6 +12,7 @@ import MyButton from '../Button/MyButton';
 import { endpoints } from '../../endpoints';
 import { routes } from '../../routes';
 import Cookie from 'js-cookie';
+import Header from '../Orgamisms/Header/Header';
 
 class ListOfFlights extends Component{
 
@@ -87,9 +88,10 @@ handleSubmit = event => {
 
   render() {
     return (
-     
+      <>
+      <Header />
       <div className="mainTable" id="top">
-
+       
 
         <Form  variant="light" className="searchingForm" onSubmit={this.handleSubmit}>
           <Form.Row>
@@ -146,6 +148,7 @@ handleSubmit = event => {
           duration={500} 
           ><span ><i  className="icon-up-open" /></span></MyLink>
       </div>
+      </>
     );
   }
 

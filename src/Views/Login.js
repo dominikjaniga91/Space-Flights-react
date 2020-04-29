@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import MyButton from '../Button/MyButton';
+import MyButton from '../components/Button/MyButton';
 import Cookie from 'js-cookie';
-import Input from '../Atoms/Input/Input';
-import loginIcon from '../../assets/icons/user-3.svg';
-import passwordIcon from '../../assets/icons/locked-4.svg';
+import Input from '../components/Atoms/Input/Input';
+import loginIcon from '../Assets/Icons/user-3.svg';
+import passwordIcon from '../Assets/Icons/locked-4.svg';
 import styled from 'styled-components';
-import  ButtonIcon  from '../Atoms/ButtonIcon/ButtonIcon';
+import  ButtonIcon  from '../components/Atoms/ButtonIcon/ButtonIcon';
 
 
 const StyledWrapper = styled.div`
@@ -119,8 +119,6 @@ class Login extends Component {
         );
     }
 }
-
-
 
 export default Login;
 

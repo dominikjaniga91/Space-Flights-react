@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import FlightObject from "./FlightObject";
 import FlightForm from '../Form/FlightForm';
-import "../../assets/fontello/css/fontello.css"
+import "../../Assets/fontello/css/fontello.css"
 import { endpoints } from '../../endpoints';
 import { routes } from '../../routes';
 import Cookie from 'js-cookie';
