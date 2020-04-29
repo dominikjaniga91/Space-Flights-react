@@ -6,6 +6,7 @@ import styles from './PassengerFlights.module.scss'
 import { endpoints } from '../../endpoints';
 import { routes } from '../../routes';
 import Cookie from 'js-cookie';
+import Header from '../Orgamisms/Header/Header';
 
 const token = Cookie.get("jwt");
 
@@ -94,6 +95,7 @@ constructor(props) {
         
         return (
             <>
+                <Header />
                 <div className={styles.table}>
                     <PassengerFlightsTable 
                         dataFlightPassenger={this.state.dataFlightPassenger}

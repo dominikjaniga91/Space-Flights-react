@@ -2,6 +2,8 @@ import React from 'react';
 import { Link} from "react-router-dom";
 import { Table } from "react-bootstrap";
 import styles from './FlightTable.module.scss';
+import { routes } from '../../../routes';
+
 
 const FlightTable = ({dataFlight, deleteFlight}) => (
 
@@ -29,10 +31,10 @@ const FlightTable = ({dataFlight, deleteFlight}) => (
                 <td>{flight.amountOfPassengers}</td>
                 <td>{flight.ticketPrice}</td>
                 <td>
-                  <Link to={`/updateFlight/${flight.id}`}>
+                  <Link to={`${routes.flight}${flight.id}`}>
                     <i  className="icon-sliders" style={{ fontSize: "15px" }} />
                   </Link>
-                  <Link to={`/flightPassengers/${flight.id}`}>
+                  <Link to={`${routes.flightPassengersReal}${flight.id}`}>
                     <i  className="icon-user-plus" style={{ fontSize: "16px" }} />
                   </Link>
                   <span >

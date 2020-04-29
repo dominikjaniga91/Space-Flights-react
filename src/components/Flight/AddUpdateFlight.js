@@ -1,22 +1,20 @@
 import React, {Component} from 'react';
 import FlightObject from "./FlightObject";
 import FlightForm from '../Form/FlightForm';
-import "../../Assets/fontello/css/fontello.css"
+import "../../Assets/fontello/css/fontello.css";
 import { endpoints } from '../../endpoints';
 import { routes } from '../../routes';
 import Cookie from 'js-cookie';
+import Header from '../Orgamisms/Header/Header';
 
 const token = Cookie.get("jwt");
 
-class UpdateFlight extends Component {
+class AddUpdateFlight extends Component {
     
-constructor(props) {
-    super(props)
-    this.state = new FlightObject(); 
-};
+    state = new FlightObject(); 
     
     componentDidMount() {
-       
+        
         if(this.props.match.params.id !== undefined){
               
             fetch(endpoints.flight + this.props.match.params.id,
@@ -61,14 +59,17 @@ constructor(props) {
     
     render() {
         return (
+            <>
+            <Header />
             <FlightForm 
                 flight={this.state} 
                 onSubmit={this.handleSubmit} 
                 onChange={this.handleChange}
                 historyBack={() => this.props.history.push(routes.flights)}
             />
+            </>
         );
     }
 }
 
-export default UpdateFlight;
+export default AddUpdateFlight;

@@ -4,15 +4,16 @@ import PassengerForm from '../Form/PassengerForm';
 import { endpoints } from '../../endpoints';
 import { routes } from '../../routes';
 import Cookie from 'js-cookie';
+import Header from '../Orgamisms/Header/Header';
 
 const token = Cookie.get("jwt");
 
-class UpdatePassenger extends Component {
-
+class AddUpdatePassenger extends Component {
+    
     state = new PassengerObject(); 
-
-    componentDidMount(){
-        
+    
+    componentDidMount() {
+        console.log(this.props.match.params.id)
         if(this.props.match.params.id !== undefined){
               
             fetch(endpoints.passenger +this.props.match.params.id,
@@ -58,15 +59,19 @@ class UpdatePassenger extends Component {
     
     render() {
         return (
-            <PassengerForm 
-                passenger={this.state}
-                onChange={this.handleChange}
-                onSubmit={this.handleSubmit}
-                historyBack={() => this.props.history.push(routes.passengers)}
-            />                    
+
+            <>
+                <Header />
+                <PassengerForm 
+                    passenger={this.state}
+                    onChange={this.handleChange}
+                    onSubmit={this.handleSubmit}
+                    historyBack={() => this.props.history.push(routes.passengers)}
+                />     
+            </>               
 
         ); 
     }
 }
 
-export default UpdatePassenger;
+export default AddUpdatePassenger;

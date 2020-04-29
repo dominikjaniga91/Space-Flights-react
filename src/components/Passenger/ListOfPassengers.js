@@ -10,6 +10,7 @@ import PassengerTable from './Table/PassengerTable';
 import { endpoints } from '../../endpoints';
 import { routes } from '../../routes';
 import Cookie from 'js-cookie';
+import Header from '../Orgamisms/Header/Header';
 
 const token = Cookie.get("jwt");
 
@@ -62,68 +63,72 @@ class ListOfPassengers extends Component{
 
   render() {
     return (
-      <div className="mainTable">
-        <Form  variant="light" className="searchingForm" onSubmit={this.handleSubmit}>
-          <Form.Row>
-              <Form.Group as={Col}  controlId="formPlaintextEmail">  
-              <Col sm="10">
-                  <Form.Label column sm="10">First name:</Form.Label>
-              
-                  <Form.Control type="text"
-                      name="destination"
-                      value={this.state.firstName}
-                      onChange={this.handleChange}
-                      required />
-                  </Col>    
-              </Form.Group>
-              <Form.Group as={Col}  controlId="formPlaintextEmail">  
-              <Col sm="10">
-                  <Form.Label column sm="10">Last name:</Form.Label>
-              
-                  <Form.Control type="text"
-                      name="destination"
-                      value={this.state.lastName}
-                      onChange={this.handleChange}
-                      required />
-                  </Col>    
-              </Form.Group>
-              <Form.Group as={Col} controlId="formPlaintextEmail">  
-              <Col sm="10">
-                  <Form.Label column sm="10">Birth date:</Form.Label>
-                  
-                  <Form.Control type="date"
-                      name="finishDate"
-                      value={this.state.birthDate}
-                      onChange={this.handleChange}
-                      required />
-                  </Col>
-              </Form.Group>
-              <Button className="searchButton" variant="primary" type="submit"  size="sm">
-                  Search
-              </Button>
-              <Button className="searchButton" onClick={() => this.componentDidMount()}variant="primary"   size="sm">
-                  Reset
-              </Button>
-          </Form.Row>
-        </Form>
-        <PassengerTable 
-          dataPassenger={this.state.dataPassenger}
-          deletePassenger={this.deletePassenger}
-        />
-      <span id="sideBar">
-        <Button id="mainButton" href={routes.newPassenger} >Add new passenger</Button><br></br><br></br>
-        <Button id="mainButton" href={routes.newFlight}>Add new flight</Button><br></br><br></br>
- 
-      </span>
-      <MyLink
-          activeClass="active" 
-          to="top" 
-          spy={true} 
-          smooth={true} 
-          offset={0} 
-          duration={500} 
-          ><span ><i  className="icon-up-open" /></span></MyLink>
-      </div>
+
+      <>
+        <Header />
+        <div className="mainTable">
+          <Form  variant="light" className="searchingForm" onSubmit={this.handleSubmit}>
+            <Form.Row>
+                <Form.Group as={Col}  controlId="formPlaintextEmail">  
+                <Col sm="10">
+                    <Form.Label column sm="10">First name:</Form.Label>
+                
+                    <Form.Control type="text"
+                        name="destination"
+                        value={this.state.firstName}
+                        onChange={this.handleChange}
+                        required />
+                    </Col>    
+                </Form.Group>
+                <Form.Group as={Col}  controlId="formPlaintextEmail">  
+                <Col sm="10">
+                    <Form.Label column sm="10">Last name:</Form.Label>
+                
+                    <Form.Control type="text"
+                        name="destination"
+                        value={this.state.lastName}
+                        onChange={this.handleChange}
+                        required />
+                    </Col>    
+                </Form.Group>
+                <Form.Group as={Col} controlId="formPlaintextEmail">  
+                <Col sm="10">
+                    <Form.Label column sm="10">Birth date:</Form.Label>
+                    
+                    <Form.Control type="date"
+                        name="finishDate"
+                        value={this.state.birthDate}
+                        onChange={this.handleChange}
+                        required />
+                    </Col>
+                </Form.Group>
+                <Button className="searchButton" variant="primary" type="submit"  size="sm">
+                    Search
+                </Button>
+                <Button className="searchButton" onClick={() => this.componentDidMount()}variant="primary"   size="sm">
+                    Reset
+                </Button>
+            </Form.Row>
+          </Form>
+          <PassengerTable 
+            dataPassenger={this.state.dataPassenger}
+            deletePassenger={this.deletePassenger}
+          />
+        <span id="sideBar">
+          <Button id="mainButton" href={routes.newPassenger} >Add new passenger</Button><br></br><br></br>
+          <Button id="mainButton" href={routes.newFlight}>Add new flight</Button><br></br><br></br>
+  
+        </span>
+        <MyLink
+            activeClass="active" 
+            to="top" 
+            spy={true} 
+            smooth={true} 
+            offset={0} 
+            duration={500} 
+            ><span ><i  className="icon-up-open" /></span></MyLink>
+        </div>
+      </>
     );
   }
 

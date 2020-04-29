@@ -2,7 +2,7 @@ import React from 'react';
 import { Link} from "react-router-dom";
 import { Table } from "react-bootstrap";
 import styles from './PassengerTable.module.scss';
-
+import { routes } from '../../../routes';
 
 const PassengerTable = ({dataPassenger, deletePassenger}) => (
 
@@ -30,10 +30,10 @@ const PassengerTable = ({dataPassenger, deletePassenger}) => (
               <td>{passenger.notes}</td>
               <td>{passenger.birthDate}</td>
               <td>
-                <Link to={`/updatePassenger/${passenger.id}`}>
+                <Link to={`${routes.passenger}${passenger.id}`}>
                     <i  className="icon-user" style={{ fontSize: "15px" }} />
                 </Link>
-                <Link to={`/passengerFlights/${passenger.id}`}>
+                <Link to={`${routes.passengerFlightsReal}${passenger.id}`}>
                     <i  className="icon-flight-1" style={{ fontSize: "16px" }} />
                 </Link>
                 <span >

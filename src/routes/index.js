@@ -5,10 +5,13 @@ export const routes = {
     flights:'/flights',
     passengers:'/passengers',
     newPassenger:'/new-passenger',
-    updatePassenger:'/update-passenger/:id',
-    updateFlight:'/update-flight/:id',
+    updatePassenger:'/passenger/:id',
+    passenger:'/passenger/',
+    updateFlight:'/flight/:id',
+    flight:'/flight/',
     newFlight:'/new-flight', 
-    passengerFlights:'/passengerFlights/:id',
-    flightPassengers: '/flightPassengers/:id',
-
+    passengerFlights:'/passenger-flights/:id',
+    passengerFlightsReal:'/passenger-flights/',
+    flightPassengers: '/flight-passengers/:id',
+    flightPassengersReal: '/flight-passengers/',
 }
