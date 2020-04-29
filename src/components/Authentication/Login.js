@@ -1,12 +1,53 @@
 import React, { Component } from 'react';
-import 'bootstrap/dist/css/bootstrap.css';
-import '../../App.css';
-import { Form } from "react-bootstrap";
-import { Col } from "react-bootstrap";
-import { Row } from "react-bootstrap";
 import MyButton from '../Button/MyButton';
 import Cookie from 'js-cookie';
+import Input from '../Atoms/Input/Input';
+import loginIcon from '../../assets/icons/user-3.svg';
+import passwordIcon from '../../assets/icons/locked-4.svg';
+import styled from 'styled-components';
+import  ButtonIcon  from '../Atoms/ButtonIcon/ButtonIcon';
 
+
+const StyledWrapper = styled.div`
+
+    background-color: hsl(0, 0%, 15%, 80%);
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 14vw;
+    width: 400px;
+    height: 250px;
+    border-radius: 10px;
+    position: relative;
+`;
+
+const StyledInnerWrapper = styled.div`
+
+    padding-top: 50px;
+    width: 400px;
+    height: 150px;
+    display: grid;
+    grid-template-columns: 20% auto;
+    grid-template-rows: 50% 50%;
+   
+
+`;
+
+const StyledButtonIcon = styled(ButtonIcon)`
+
+    filter: invert(57%) sepia(21%) saturate(2878%) hue-rotate(346deg) brightness(104%) contrast(7%);
+    align-self: center;
+`;
+
+const StyledButton = styled(MyButton)`
+
+    position: absolute;
+    left: 50%;
+    right: 50%;
+    transform: translate(-50%, -50%);
+    width: 100px;
+    bottom: 30px;
+   
+`
 
 class Login extends Component {
 
@@ -41,9 +82,6 @@ class Login extends Component {
             if(token !== null){
                 Cookie.set("isAuthenticated", true);
                 Cookie.set("jwt", token);
-                // localStorage.setItem("isAuthenticated", true);
-                // localStorage.setItem("jwt", token);
-                
             }
         })
         .catch(error => console.log(error));
@@ -54,30 +92,29 @@ class Login extends Component {
 
         return(
 
-            <div className="mainFormCenter">
-                <Form className="myForm" onSubmit={this.handleSubmit}>
-                    <Form.Group as={Row} controlId="formPlaintextEmail">  
-                        <Form.Label column sm="4">Login:</Form.Label>
-                        <Col sm="8">
-                        <Form.Control type="text"
+           <StyledWrapper>
+               <form onSubmit={this.handleSubmit}>
+                    <StyledInnerWrapper>
+                        <StyledButtonIcon icon={loginIcon}/>
+                        <Input 
+                            placeholder="username"
+                            type="text"
                             name="username"
                             onChange={this.handleChange}
-                            required />
-                        </Col>
-                    
-                    </Form.Group>
-                    <Form.Group as={Row} controlId="formPlaintextEmail">  
-                        <Form.Label column sm="4">Password:</Form.Label>
-                        <Col sm="8">
-                        <Form.Control type="password"
+                            required
+                        />
+                        <StyledButtonIcon icon={passwordIcon}/>
+                        <Input 
+                            placeholder="password"
+                            type="password"
                             name="password"
                             onChange={this.handleChange}
-                            required />
-                        </Col>
-                    </Form.Group>
-                    <MyButton>Login</MyButton>
-                </Form>
-            </div>
+                            required
+                        />
+                        <StyledButton>  Sign in </StyledButton>
+                    </StyledInnerWrapper>
+                </form>    
+            </StyledWrapper>
 
         );
     }
@@ -86,4 +123,5 @@ class Login extends Component {
 
 
 export default Login;
+
 
