@@ -2,7 +2,6 @@
 import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import '../../App.css';
-import { Button } from "react-bootstrap";
 import { Form } from "react-bootstrap";
 import { Col } from "react-bootstrap";
 import SearchFlight from "./SearchFlight";
@@ -136,8 +135,8 @@ handleSubmit = event => {
           deleteFlight={this.deleteFlight}
           />
         <span id="sideBar">
-          <Button id="mainButton" href={routes.newPassenger}>Add new passenger</Button><br></br><br></br>
-          <Button id="mainButton" href={routes.newFlight}>Add new flight</Button><br></br><br></br>
+          <MyButton  href={routes.newPassenger}>Add pass</MyButton><br></br><br></br>
+          <MyButton  href={routes.newFlight}>Add flight</MyButton><br></br><br></br>
         </span>
           <MyLink
           activeClass="active" 

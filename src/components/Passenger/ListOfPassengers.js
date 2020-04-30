@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import '../../App.css';
-import { Button } from "react-bootstrap";
 import { Form } from "react-bootstrap";
 import { Col } from "react-bootstrap";
 import {Link as MyLink} from 'react-scroll';
@@ -11,6 +10,7 @@ import { endpoints } from '../../endpoints';
 import { routes } from '../../routes';
 import Cookie from 'js-cookie';
 import Header from '../Orgamisms/Header/Header';
+import MyButton from '../Button/MyButton';
 
 const token = Cookie.get("jwt");
 
@@ -102,12 +102,8 @@ class ListOfPassengers extends Component{
                         required />
                     </Col>
                 </Form.Group>
-                <Button className="searchButton" variant="primary" type="submit"  size="sm">
-                    Search
-                </Button>
-                <Button className="searchButton" onClick={() => this.componentDidMount()}variant="primary"   size="sm">
-                    Reset
-                </Button>
+                <MyButton>Search</MyButton>
+                <MyButton onClick={() => this.componentDidMount()}>Reset</MyButton>
             </Form.Row>
           </Form>
           <PassengerTable 
@@ -115,8 +111,8 @@ class ListOfPassengers extends Component{
             deletePassenger={this.deletePassenger}
           />
         <span id="sideBar">
-          <Button id="mainButton" href={routes.newPassenger} >Add new passenger</Button><br></br><br></br>
-          <Button id="mainButton" href={routes.newFlight}>Add new flight</Button><br></br><br></br>
+          <MyButton  href={routes.newPassenger} >Add pass</MyButton><br></br><br></br>
+          <MyButton  href={routes.newFlight}>Add flight</MyButton><br></br><br></br>
   
         </span>
         <MyLink
