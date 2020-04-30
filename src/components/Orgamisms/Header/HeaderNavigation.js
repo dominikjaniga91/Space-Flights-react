@@ -20,6 +20,12 @@ const StyledNavLink = styled(NavLink)`
         text-decoration: none;
         border-bottom: 2px solid hsl(204, 100%, 50%);
     }
+
+    &.active{
+        color: white;
+        text-decoration: none;
+        border-bottom: 2px solid hsl(204, 100%, 50%);
+    }
 `;
 
 const clearSession = () => {
@@ -29,8 +35,8 @@ const clearSession = () => {
 const HeaderNavigation = () => (
     <>
     <nav>
-        <StyledNavLink to={routes.flights}>Flights</StyledNavLink>
-        <StyledNavLink  to={routes.passengers}> Passengers</StyledNavLink>
+        <StyledNavLink  activeClassName="active" to={routes.flights}>Flights</StyledNavLink>
+        <StyledNavLink  activeClassName="active" to={routes.passengers}> Passengers</StyledNavLink>
     </nav>
         <StyledNavLink onClick={clearSession} to={routes.login}> Logout</StyledNavLink>
     </>
