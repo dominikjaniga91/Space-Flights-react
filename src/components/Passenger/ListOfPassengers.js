@@ -7,10 +7,10 @@ import {Link as MyLink} from 'react-scroll';
 import SearchPassenger from './SearchPassenger'
 import PassengerTable from './Table/PassengerTable';
 import { endpoints } from '../../endpoints';
-import { routes } from '../../routes';
 import Cookie from 'js-cookie';
 import Header from '../Orgamisms/Header/Header';
 import MyButton from '../Button/MyButton';
+import styles from './ListOfPassengers.module.scss';
 
 const token = Cookie.get("jwt");
 
@@ -66,8 +66,8 @@ class ListOfPassengers extends Component{
 
       <>
         <Header />
-        <div className="mainTable">
-          <Form  variant="light" className="searchingForm" onSubmit={this.handleSubmit}>
+        <div className={styles.wrapper}>
+          <Form  variant="light" className={styles.form} onSubmit={this.handleSubmit}>
             <Form.Row>
                 <Form.Group as={Col}  controlId="formPlaintextEmail">  
                 <Col sm="10">
@@ -110,11 +110,6 @@ class ListOfPassengers extends Component{
             dataPassenger={this.state.dataPassenger}
             deletePassenger={this.deletePassenger}
           />
-        <span id="sideBar">
-          <MyButton  href={routes.newPassenger} >Add pass</MyButton><br></br><br></br>
-          <MyButton  href={routes.newFlight}>Add flight</MyButton><br></br><br></br>
-  
-        </span>
         <MyLink
             activeClass="active" 
             to="top" 

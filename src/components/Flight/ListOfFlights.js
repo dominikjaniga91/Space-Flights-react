@@ -9,9 +9,9 @@ import {Link as MyLink} from 'react-scroll';
 import FlightTable from './Table/FlightTable';
 import MyButton from '../Button/MyButton';
 import { endpoints } from '../../endpoints';
-import { routes } from '../../routes';
 import Cookie from 'js-cookie';
 import Header from '../Orgamisms/Header/Header';
+import styles from './ListOfFlights.module.scss';
 
 class ListOfFlights extends Component{
 
@@ -89,10 +89,9 @@ handleSubmit = event => {
     return (
       <>
       <Header />
-      <div className="mainTable" id="top">
+      <div className={styles.wrapper} id="top">
        
-
-        <Form  variant="light" className="searchingForm" onSubmit={this.handleSubmit}>
+        <Form  variant="light" className={styles.form} onSubmit={this.handleSubmit}>
           <Form.Row>
               <Form.Group as={Col}  controlId="formPlaintextEmail">  
               <Col sm="10">
@@ -133,19 +132,16 @@ handleSubmit = event => {
         <FlightTable 
           dataFlight={this.state.dataFlight}
           deleteFlight={this.deleteFlight}
-          />
-        <span id="sideBar">
-          <MyButton  href={routes.newPassenger}>Add pass</MyButton><br></br><br></br>
-          <MyButton  href={routes.newFlight}>Add flight</MyButton><br></br><br></br>
-        </span>
-          <MyLink
+        />
+
+        <MyLink
           activeClass="active" 
           to="top" 
           spy={true} 
           smooth={true} 
           offset={0} 
           duration={500} 
-          ><span ><i  className="icon-up-open" /></span></MyLink>
+        ><span ><i  className="icon-up-open" /></span></MyLink>
       </div>
       </>
     );

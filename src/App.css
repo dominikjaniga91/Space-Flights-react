@@ -7,11 +7,6 @@ body{
 
 }
 
-.mainTable{
-
-  width: 80%;
-  float: left;
-}
 #sideBar{
   margin-top: 80px;
   margin-left: 60px;
@@ -32,14 +27,7 @@ body{
 }
 
 
-.myForm {
-  margin-left: 100px;
-  text-align: center;
-  float: left;
-  width:400px;
-  color:white;
 
-}
 
 .myLink{
   width: 112px;
@@ -109,18 +97,6 @@ body{
 
 /* ------------------------------------------------------- */
 
-.mainNavBar{
-
-  margin-left: 40px;
-}
-
-.searchButton{
-
-  width: 100px;
-  height: 38px;
-  margin-top: 37px;
-  margin-right: 20px;
-}
 
 #spaceLogo{
   display: block;
@@ -139,16 +115,6 @@ body{
  
 }
 
-.mainFormCenter{
-
-
-  margin-top: 100px;
-  margin-right: auto;
-  margin-left: auto;
-  width: 600px;
-  color:white;
-
-}
 
 #selectFlightPassengerForm {
   margin-left: 30px;
@@ -157,13 +123,6 @@ body{
   width:400px;
   color:white;
 
-}
-
-.searchingForm{
-
-  margin-top: 10px;
-  margin-left: 10px;;
-  color:white;
 }
 
 h2{
