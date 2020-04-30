@@ -1,7 +1,8 @@
 import styled from 'styled-components';
 
 const ButtonIcon = styled.div`
-display: inline-block;
+  
+  display: inline-block;
   width: 67px;
   height: 67px;
   border-radius: 20px;
@@ -10,7 +11,7 @@ display: inline-block;
   background-position: 50% 50%;
   background-size: 50% 50%;
   border: none;
- 
+  margin-left: 10px;
 `;
 
 export default ButtonIcon;

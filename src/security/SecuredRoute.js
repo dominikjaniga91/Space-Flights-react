@@ -9,15 +9,14 @@ const SecuredRoute = ({ component: Component, ...rest }) => {
         <Route {...rest} render ={
             
             props => {
-                if(Cookie.get("isAuthenticated")){
-                return <Component {...props} />
+                if(Cookie.get("jwt") !== undefined){
+                    console.log(Cookie.get("jwt"));
+                    return <Component {...props} />
                 } else {
-                    console.log('redirect to') 
-                    console.log(Cookie.get("isAuthenticated"));
-                return  <Redirect to={{
-                        pathname: '/login',
-                        state: {from: props.location}
-                    }} />
+                    return  <Redirect to={{
+                            pathname: '/login',
+                            state: {from: props.location}
+                        }} />
                 }
             }
         }/>

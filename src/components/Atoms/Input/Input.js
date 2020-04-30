@@ -9,7 +9,7 @@ const Input = styled.input`
     border-radius: 5px;
     border: none;
     align-self: center;
-
+    
     ::placeholder {
         text-transform: uppercase;
         letter-spacing: 1px;

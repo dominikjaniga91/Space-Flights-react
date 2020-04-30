@@ -27,9 +27,11 @@ function App() {
               <SecuredRoute  path={routes.newPassenger} exact component={AddUpdatePassenger} />
               <SecuredRoute  path={routes.updatePassenger} exact component={AddUpdatePassenger} />
               <SecuredRoute  path={routes.newFlight} exact component={AddUpdateFlight} />
-              <SecuredRoute  path={routes.updateFlight} component={AddUpdateFlight} />
-              <SecuredRoute  path={routes.passengerFlights}  component={PassengerFlights} />
-              <SecuredRoute  path={routes.flightPassengers}  component={FlightPassengers} />
+              <SecuredRoute  path={routes.updateFlight} exact component={AddUpdateFlight} />
+              <SecuredRoute  path={routes.passengerFlights} exact component={PassengerFlights} />
+              <SecuredRoute  path={routes.flightPassengers} exact component={FlightPassengers} />
+              <SecuredRoute  path={routes.passenger}  exact component={AddUpdatePassenger} />
+              <SecuredRoute  path={routes.flight} exact  component={AddUpdateFlight} />
             </Switch>
         </>
       </BrowserRouter>

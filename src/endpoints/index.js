@@ -10,4 +10,5 @@ export const endpoints ={
     flightPassengers: host+'flight/passengers/',
     searchFlight: 'http://localhost:8080/search/flight',
     searchPassenger: 'http://localhost:8080/search/passenger',
+    login: 'http://localhost:8080/login',
 }

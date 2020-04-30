@@ -2,11 +2,11 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { routes } from '../../../routes';
 import styled from 'styled-components';
+import Cookie from 'js-cookie';
 
 const StyledNavLink = styled(NavLink)`
 
     display: inline-block;
-    margin-left: 10px;
     color: white;
     text-decoration: none;
     width: 120px;
@@ -22,13 +22,17 @@ const StyledNavLink = styled(NavLink)`
     }
 `;
 
+const clearSession = () => {
+    Cookie.remove("jwt");
+}
+
 const HeaderNavigation = () => (
     <>
     <nav>
         <StyledNavLink to={routes.flights}>Flights</StyledNavLink>
         <StyledNavLink  to={routes.passengers}> Passengers</StyledNavLink>
     </nav>
-        <StyledNavLink  to={routes.flights}> Logout</StyledNavLink>
+        <StyledNavLink onClick={clearSession} to={routes.login}> Logout</StyledNavLink>
     </>
 );
 

@@ -6,7 +6,7 @@ import loginIcon from '../Assets/Icons/user-3.svg';
 import passwordIcon from '../Assets/Icons/locked-4.svg';
 import styled from 'styled-components';
 import  ButtonIcon  from '../components/Atoms/ButtonIcon/ButtonIcon';
-
+import { endpoints } from '../endpoints';
 
 const StyledWrapper = styled.div`
 
@@ -46,8 +46,8 @@ const StyledButton = styled(MyButton)`
     transform: translate(-50%, -50%);
     width: 100px;
     bottom: 30px;
-   
-`
+  
+`;
 
 class Login extends Component {
 
@@ -71,8 +71,9 @@ class Login extends Component {
     handleSubmit = event => {
         event.preventDefault();
         const user = {username: this.state.username, password: this.state.password };
-        
-        fetch('http://localhost:8080/login',{
+        console.log(this.state.username);
+        console.log(this.state.password);
+        fetch(endpoints.login,{
             method: "POST",
             body: JSON.stringify(user)
         })
@@ -80,7 +81,6 @@ class Login extends Component {
             const token = response.headers.get('Authorization');
             console.log(token);
             if(token !== null){
-                Cookie.set("isAuthenticated", true);
                 Cookie.set("jwt", token);
             }
         })
