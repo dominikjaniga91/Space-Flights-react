@@ -5,14 +5,14 @@ import { Form } from "react-bootstrap";
 import { Col } from "react-bootstrap";
 import { Row } from "react-bootstrap";
 import MyButton from '../Button/MyButton';
-
+import styles from './Form.module.scss';
 
 const FlightForm = ({ passenger, historyBack, ...props }) => (
 
-    <div className="mainFormCenter">
-                <Form className="myForm" {...props}>
+    <div className={styles.wrapper}>
+                <Form className={styles.form} {...props}>
                     <Form.Group as={Row} controlId="formPlaintextEmail">  
-                        <Form.Label column sm="3">First name:</Form.Label>
+                        <Form.Label column sm="4">First name:</Form.Label>
                         <Col sm="8">
                         <Form.Control type="text"
                             name="firstName"
@@ -23,7 +23,7 @@ const FlightForm = ({ passenger, historyBack, ...props }) => (
                     
                     </Form.Group>
                     <Form.Group as={Row} controlId="formPlaintextEmail">  
-                        <Form.Label column sm="3">Last name:</Form.Label>
+                        <Form.Label column sm="4">Last name:</Form.Label>
                         <Col sm="8">
                         <Form.Control type="text"
                             name="lastName"
@@ -34,7 +34,7 @@ const FlightForm = ({ passenger, historyBack, ...props }) => (
                     
                     </Form.Group>
                     <Form.Group as={Row} controlId="formPlaintextEmail">  
-                        <Form.Label column sm="3">Sex:</Form.Label>
+                        <Form.Label column sm="4">Sex:</Form.Label>
                         <Col sm="8">
                         <Form.Control as="select" name="sex"  value={passenger.sex} {...props} required>
                             <option defaultValue value="none">Select</option>
@@ -44,7 +44,7 @@ const FlightForm = ({ passenger, historyBack, ...props }) => (
                         </Col>
                     </Form.Group>
                     <Form.Group as={Row} controlId="formPlaintextEmail">  
-                        <Form.Label column sm="3">Country:</Form.Label>
+                        <Form.Label column sm="4">Country:</Form.Label>
                         <Col sm="8">
                         <Form.Control type="text"
                             name="country"
@@ -54,7 +54,7 @@ const FlightForm = ({ passenger, historyBack, ...props }) => (
                         </Col>
                     </Form.Group>
                     <Form.Group as={Row} controlId="formPlaintextEmail">  
-                        <Form.Label column sm="3">Birth date:</Form.Label>
+                        <Form.Label column sm="4">Birth date:</Form.Label>
                         <Col sm="8">
                         <Form.Control type="date"
                             name="birthDate"
@@ -64,7 +64,7 @@ const FlightForm = ({ passenger, historyBack, ...props }) => (
                         </Col>
                     </Form.Group>
                     <Form.Group as={Row} controlId="formPlaintextEmail">  
-                        <Form.Label column sm="3">Notes:</Form.Label>
+                        <Form.Label column sm="4">Notes:</Form.Label>
                         <Col sm="8">
                         <Form.Control as="textarea" rows="3" type="text"
                             name="notes"

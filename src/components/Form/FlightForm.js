@@ -5,11 +5,12 @@ import { Form } from "react-bootstrap";
 import { Col } from "react-bootstrap";
 import { Row } from "react-bootstrap";
 import MyButton from '../Button/MyButton';
+import styles from './Form.module.scss';
 
 const FlightForm = ({ flight, historyBack, ...props }) => (
 
-    <div className="mainFormCenter">
-                <Form className="myForm" {...props}>
+    <div className={styles.wrapper}>
+                <Form className={styles.form} {...props}>
                     <Form.Group as={Row} controlId="formPlaintextEmail">  
                         <Form.Label column sm="4">Destination:</Form.Label>
                         <Col sm="8">
@@ -44,7 +45,7 @@ const FlightForm = ({ flight, historyBack, ...props }) => (
                        
                     </Form.Group>
                     <Form.Group as={Row} controlId="formPlaintextEmail">  
-                        <Form.Label column sm="4">Plane capacity:</Form.Label>
+                        <Form.Label column sm="4">Capacity:</Form.Label>
                         <Col sm="8">
                         <Form.Control type="text"
                                name="numberOfSeats"
