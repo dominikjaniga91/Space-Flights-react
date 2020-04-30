@@ -12,6 +12,9 @@ import { endpoints } from '../../endpoints';
 import Cookie from 'js-cookie';
 import Header from '../Orgamisms/Header/Header';
 import styles from './ListOfFlights.module.scss';
+import AddItemButton from '../Atoms/AddItem/AddItemButton';
+import addIcon from '../../Assets/Icons/plus.svg';
+import AddItemBar from '../Atoms/AddItem/AddItenBar';
 
 class ListOfFlights extends Component{
 
@@ -20,11 +23,14 @@ class ListOfFlights extends Component{
     this.state = new SearchFlight();
     this.state = {
       dataFlight: [],
-      display: "none"
+      isNewItemBarVisible: false,
     }
     this.handleChange = this.handleChange.bind(this);
 
 }
+
+  toggleNewItemBar = () => 
+  this.setState(prevState => ({ isNewItemBarVisible: !prevState.isNewItemBarVisible, }));
 
   componentDidMount() {
     const token = Cookie.get("jwt");
@@ -89,6 +95,11 @@ handleSubmit = event => {
     return (
       <>
       <Header />
+      <AddItemButton
+        onClick={this.toggleNewItemBar} 
+        icon={addIcon} 
+      />
+      <AddItemBar isVisible={this.state.isNewItemBarVisible}/>
       <div className={styles.wrapper} id="top">
        
         <Form  variant="light" className={styles.form} onSubmit={this.handleSubmit}>

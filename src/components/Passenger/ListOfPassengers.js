@@ -11,6 +11,9 @@ import Cookie from 'js-cookie';
 import Header from '../Orgamisms/Header/Header';
 import MyButton from '../Button/MyButton';
 import styles from './ListOfPassengers.module.scss';
+import AddItemButton from '../Atoms/AddItem/AddItemButton';
+import addIcon from '../../Assets/Icons/plus.svg';
+import AddItemBar from '../Atoms/AddItem/AddItenBar';
 
 const token = Cookie.get("jwt");
 
@@ -18,10 +21,13 @@ class ListOfPassengers extends Component{
   
     state = new SearchPassenger();
     state = {
-      dataPassenger: []
+      dataPassenger: [],
+      isNewItemBarVisible: false,
     }
 
-
+    toggleNewItemBar = () => 
+    this.setState(prevState => ({ isNewItemBarVisible: !prevState.isNewItemBarVisible, }));
+    
   componentDidMount() {
     fetch(endpoints.passengers,
       {
@@ -66,6 +72,11 @@ class ListOfPassengers extends Component{
 
       <>
         <Header />
+        <AddItemButton
+          onClick={this.toggleNewItemBar} 
+          icon={addIcon} 
+        />
+        <AddItemBar isVisible={this.state.isNewItemBarVisible}/>
         <div className={styles.wrapper}>
           <Form  variant="light" className={styles.form} onSubmit={this.handleSubmit}>
             <Form.Row>
