@@ -6,10 +6,12 @@ import { Col } from "react-bootstrap";
 import { Row } from "react-bootstrap";
 import MyButton from '../Button/MyButton';
 import styles from './Form.module.scss';
+import ErrorMessage from '../Atoms/ErrorMessage/ErrorMessage';
 
-const FlightForm = ({ passenger, historyBack, ...props }) => (
+const PassengerForm = ({ passenger, historyBack, isVisible, error, ...props }) => (
 
     <div className={styles.wrapper}>
+                <ErrorMessage isVisible={isVisible} >{error}</ErrorMessage>
                 <Form className={styles.form} {...props}>
                     <Form.Group as={Row} controlId="formPlaintextEmail">  
                         <Form.Label column sm="4">First name:</Form.Label>
@@ -66,19 +68,21 @@ const FlightForm = ({ passenger, historyBack, ...props }) => (
                     <Form.Group as={Row} controlId="formPlaintextEmail">  
                         <Form.Label column sm="4">Notes:</Form.Label>
                         <Col sm="8">
-                        <Form.Control as="textarea" rows="3" type="text"
+                        <Form.Control as="textarea" rows="2" type="text"
                             name="notes"
                             value={passenger.notes}
                             {...props}
                                 />
                         </Col>
                     </Form.Group>
-                    <MyButton onClick={historyBack} >Cancel</MyButton>
-                    &nbsp;
-                    <MyButton>Save</MyButton>
+                    <div className={styles.button__wrapper}>
+                        <MyButton onClick={historyBack} >Cancel</MyButton>
+                        &nbsp;
+                        <MyButton>Save</MyButton>
+                    </div>
                 </Form>
             </div>
 
 );
 
-export default FlightForm;
+export default PassengerForm;

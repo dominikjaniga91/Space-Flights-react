@@ -16,7 +16,7 @@ const StyledErrorMessage = styled.div`
     right: 50%;
     left: 50%;
     transform: translateX(-50%);
-    bottom: 20px;
+    top: 20px;
     visibility: hidden;
     opacity: 0;
     transition: visibility 0s 2s, opacity .4s linear;

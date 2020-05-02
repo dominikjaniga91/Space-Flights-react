@@ -4,12 +4,12 @@ margin-top: 100px;
   margin-right: auto;
   margin-left: auto;
   width: 440px;
-  height: 500px;
+  height: 550px;
   color:white;
   padding-top: 20px;
   border-radius: 10px;
   background-color: rgba(38, 38, 38, 0.8);
-  // background-color: hsl(0%, 0%, 15%, 80%);
+  position: relative;
 }
 
 .form{
@@ -19,5 +19,18 @@ margin-top: 100px;
   float: left;
   width:440px;
   color:white;
- 
+  margin-top: 50px;
+  
+}
+
+.button__wrapper{
+
+  position: absolute;
+    width: 300px;
+    height: 45px;
+    bottom: 70px;
+    left: 50%;
+    right: 50%;
+    transform: translateX(-50%);
+    
 }

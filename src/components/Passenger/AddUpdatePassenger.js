@@ -5,13 +5,19 @@ import { endpoints } from '../../endpoints';
 import { routes } from '../../routes';
 import Cookie from 'js-cookie';
 import Header from '../Orgamisms/Header/Header';
+import { Redirect } from "react-router-dom";
 
 const token = Cookie.get("jwt");
 
 class AddUpdatePassenger extends Component {
     
     state = new PassengerObject(); 
-    
+    state = {
+        error:'',
+        isVisible: false,
+        status: false
+    }
+
     componentDidMount() {
         console.log(this.props.match.params.id)
         if(this.props.match.params.id !== undefined){
@@ -49,28 +55,39 @@ class AddUpdatePassenger extends Component {
             },
             body: JSON.stringify(this.state)
         })
-            .then(res => res.json())
-            .then(response => {
-                console.log(response);
-            }).catch(error => console.log(error));
-            
-            this.props.history.push(routes.passengers);
+        .then(response => {
+            if(response.status !== 201){
+                response.json().then(data => { 
+                    this.setState(
+                        {error: data.detail, isVisible: true })
+                    
+                    });
+            }else {
+                    this.setState({ status: true})
+            };  
+        }).catch(error => console.log(error));
     }
     
     render() {
-        return (
+        if(this.state.status){
+            return <Redirect to={{ pathname: routes.passengers }} />
+        }else {
+            return (
 
-            <>
-                <Header />
-                <PassengerForm 
-                    passenger={this.state}
-                    onChange={this.handleChange}
-                    onSubmit={this.handleSubmit}
-                    historyBack={() => this.props.history.push(routes.passengers)}
-                />     
-            </>               
+                <>
+                    <Header />
+                    <PassengerForm 
+                        error={this.state.error}
+                        isVisible={this.state.isVisible} 
+                        passenger={this.state}
+                        onChange={this.handleChange}
+                        onSubmit={this.handleSubmit}
+                        historyBack={() => this.props.history.push(routes.passengers)}
+                    />     
+                </>               
 
-        ); 
+            ); 
+        }
     }
 }
 

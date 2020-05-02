@@ -16,7 +16,7 @@ class AddUpdateFlight extends Component {
     state = {
         error:'',
         isVisible: false,
-        status: ''
+        status: false
     }
     
     componentDidMount() {

@@ -8,6 +8,8 @@ import styled from 'styled-components';
 import  ButtonIcon  from '../components/Atoms/ButtonIcon/ButtonIcon';
 import { endpoints } from '../endpoints';
 import ErrorMessage from '../components/Atoms/ErrorMessage/ErrorMessage';
+import { Redirect } from "react-router-dom";
+import { routes } from '../routes';
 
 const StyledWrapper = styled.div`
 
@@ -22,9 +24,10 @@ const StyledWrapper = styled.div`
 `;
 
 const StyledInnerWrapper = styled.div`
-    padding-top: 50px;
-    width: 400px;
-    height: 150px;
+
+    padding-top: 80px;
+    width: 350px;
+    height: 180px;
     display: grid;
     grid-template-columns: 20% auto;
     grid-template-rows: 50% 50%;
@@ -43,7 +46,7 @@ const StyledButton = styled(MyButton)`
     right: 50%;
     transform: translate(-55%, -50%);
     width: 100px;
-    bottom: 55px;
+    bottom: 40px;
 `;
 
 class Login extends Component {
@@ -53,16 +56,14 @@ class Login extends Component {
         password: '',
         error:'',
         isVisible: false,
-        }
-
+        status: false
+    }
 
     handleChange = event => {
 
         const newValue = event.target.value;
         const fieldName = event.target.name;
-
-        this.setState({ [fieldName]:newValue  })
-
+        this.setState({ [fieldName]:newValue  });
     };
 
     handleSubmit = event => {
@@ -74,9 +75,11 @@ class Login extends Component {
         })
         .then(response => {
             if(response.status === 200){
+                
                 const token = response.headers.get('Authorization');
                 if(token !== null){
                     Cookie.set("jwt", token);
+                    this.setState({ status: true });
                 }
             }else {
                  response.json().then(data => { 
@@ -92,10 +95,14 @@ class Login extends Component {
                   
     render(){
 
-        return(
-           <StyledWrapper>
-               <ErrorMessage isVisible={this.state.isVisible} >{this.state.error}</ErrorMessage>
-               <form onSubmit={this.handleSubmit}>
+        if(this.state.status){
+            return <Redirect to={{ pathname: routes.flights }} />
+        }else {
+
+            return(
+            <StyledWrapper>
+                <ErrorMessage isVisible={this.state.isVisible} >{this.state.error}</ErrorMessage>
+                <form onSubmit={this.handleSubmit}>
                     <StyledInnerWrapper>
                         <StyledButtonIcon icon={loginIcon}/>
                         <Input 
@@ -117,8 +124,8 @@ class Login extends Component {
                     </StyledInnerWrapper>
                 </form>    
             </StyledWrapper>
-
-        );
+            );
+        }
     }
 }
 

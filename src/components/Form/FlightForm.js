@@ -8,6 +8,7 @@ import MyButton from '../Button/MyButton';
 import styles from './Form.module.scss';
 import ErrorMessage from '../Atoms/ErrorMessage/ErrorMessage';
 
+
 const FlightForm = ({ flight, historyBack, isVisible, error, ...props }) => (
 
     <div className={styles.wrapper}>
@@ -66,9 +67,11 @@ const FlightForm = ({ flight, historyBack, isVisible, error, ...props }) => (
                                required />
                         </Col>
                     </Form.Group>
-                    <MyButton onClick={historyBack} >Cancel</MyButton>
-                    &nbsp;
-                    <MyButton>Save flight</MyButton>
+                    <div className={styles.button__wrapper}>
+                        <MyButton onClick={historyBack} >Cancel</MyButton>
+                        &nbsp;
+                        <MyButton>Save</MyButton>
+                    </div>
                 </Form>
             </div>
 
