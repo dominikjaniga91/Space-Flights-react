@@ -7,6 +7,7 @@ import passwordIcon from '../Assets/Icons/locked-4.svg';
 import styled from 'styled-components';
 import  ButtonIcon  from '../components/Atoms/ButtonIcon/ButtonIcon';
 import { endpoints } from '../endpoints';
+import ErrorMessage from '../components/Atoms/ErrorMessage/ErrorMessage';
 
 const StyledWrapper = styled.div`
 
@@ -15,21 +16,18 @@ const StyledWrapper = styled.div`
     margin-right: auto;
     margin-top: 14vw;
     width: 400px;
-    height: 250px;
+    height: 300px;
     border-radius: 10px;
     position: relative;
 `;
 
 const StyledInnerWrapper = styled.div`
-
     padding-top: 50px;
     width: 400px;
     height: 150px;
     display: grid;
     grid-template-columns: 20% auto;
     grid-template-rows: 50% 50%;
-   
-
 `;
 
 const StyledButtonIcon = styled(ButtonIcon)`
@@ -43,21 +41,20 @@ const StyledButton = styled(MyButton)`
     position: absolute;
     left: 50%;
     right: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-55%, -50%);
     width: 100px;
-    bottom: 30px;
-  
+    bottom: 55px;
 `;
 
 class Login extends Component {
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            username: '',
-            password: '',
+    state = {
+        username: '',
+        password: '',
+        error:'',
+        isVisible: false,
         }
-    }
+
 
     handleChange = event => {
 
@@ -71,18 +68,23 @@ class Login extends Component {
     handleSubmit = event => {
         event.preventDefault();
         const user = {username: this.state.username, password: this.state.password };
-        console.log(this.state.username);
-        console.log(this.state.password);
         fetch(endpoints.login,{
             method: "POST",
             body: JSON.stringify(user)
         })
         .then(response => {
-            const token = response.headers.get('Authorization');
-            console.log(token);
-            if(token !== null){
-                Cookie.set("jwt", token);
-            }
+            if(response.status === 200){
+                const token = response.headers.get('Authorization');
+                if(token !== null){
+                    Cookie.set("jwt", token);
+                }
+            }else {
+                 response.json().then(data => { 
+                     this.setState(
+                         {error: data.detail, isVisible: true })
+                    
+                    });
+            };  
         })
         .catch(error => console.log(error));
 
@@ -91,8 +93,8 @@ class Login extends Component {
     render(){
 
         return(
-
            <StyledWrapper>
+               <ErrorMessage isVisible={this.state.isVisible} >{this.state.error}</ErrorMessage>
                <form onSubmit={this.handleSubmit}>
                     <StyledInnerWrapper>
                         <StyledButtonIcon icon={loginIcon}/>
