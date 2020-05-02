@@ -86,7 +86,7 @@ class AddUpdateFlight extends Component {
                         flight={this.state} 
                         onSubmit={this.handleSubmit} 
                         onChange={this.handleChange}
-                        historyBack={() => this.props.history.push(routes.flights)}
+                        historyBack={() => this.props.history.goBack()}
                     />
                 </>
             );

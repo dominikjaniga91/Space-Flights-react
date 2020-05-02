@@ -110,7 +110,7 @@ constructor(props) {
                     />   
                 </div>
                 <div className={styles.buttons}>
-                    <MyButton onClick={() => this.props.history.push(routes.flights)}>Cancel</MyButton>
+                    <MyButton onClick={() => this.props.history.goBack()}>Cancel</MyButton>
                         &nbsp;
                     <MyButton onClick={this.savePassengers}>Save</MyButton>
                 </div>

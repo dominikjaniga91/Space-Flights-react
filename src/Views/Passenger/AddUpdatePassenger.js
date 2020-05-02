@@ -82,7 +82,7 @@ class AddUpdatePassenger extends Component {
                         passenger={this.state}
                         onChange={this.handleChange}
                         onSubmit={this.handleSubmit}
-                        historyBack={() => this.props.history.push(routes.passengers)}
+                        historyBack={() => this.props.history.goBack()}
                     />     
                 </>               
 
