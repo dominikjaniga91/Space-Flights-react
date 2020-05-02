@@ -6,12 +6,18 @@ import { endpoints } from '../../endpoints';
 import { routes } from '../../routes';
 import Cookie from 'js-cookie';
 import Header from '../Orgamisms/Header/Header';
+import { Redirect } from "react-router-dom";
 
 const token = Cookie.get("jwt");
 
 class AddUpdateFlight extends Component {
     
     state = new FlightObject(); 
+    state = {
+        error:'',
+        isVisible: false,
+        status: ''
+    }
     
     componentDidMount() {
         
@@ -51,25 +57,41 @@ class AddUpdateFlight extends Component {
             body: JSON.stringify(this.state)
         })
         .then(response => {
-            console.log(response);
+
+                if(response.status !== 201){
+                    response.json().then(data => { 
+                        this.setState(
+                            {error: data.detail, isVisible: true })
+                       
+                       });
+                }else {
+                     this.setState({ status: true})
+                };    
         }).catch(error => console.log(error));
   
-            this.props.history.push(routes.flights);
+            
     }
     
     render() {
-        return (
-            <>
-            <Header />
-            <FlightForm 
-                flight={this.state} 
-                onSubmit={this.handleSubmit} 
-                onChange={this.handleChange}
-                historyBack={() => this.props.history.push(routes.flights)}
-            />
-            </>
-        );
+
+        if(this.state.status){
+            return <Redirect to={{ pathname: routes.flights }} />
+        }else {
+            return (
+                <>  
+                    <Header />
+                    <FlightForm
+                        error={this.state.error}
+                        isVisible={this.state.isVisible} 
+                        flight={this.state} 
+                        onSubmit={this.handleSubmit} 
+                        onChange={this.handleChange}
+                        historyBack={() => this.props.history.push(routes.flights)}
+                    />
+                </>
+            );
     }
+}
 }
 
 export default AddUpdateFlight;

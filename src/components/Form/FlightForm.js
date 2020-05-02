@@ -6,10 +6,12 @@ import { Col } from "react-bootstrap";
 import { Row } from "react-bootstrap";
 import MyButton from '../Button/MyButton';
 import styles from './Form.module.scss';
+import ErrorMessage from '../Atoms/ErrorMessage/ErrorMessage';
 
-const FlightForm = ({ flight, historyBack, ...props }) => (
+const FlightForm = ({ flight, historyBack, isVisible, error, ...props }) => (
 
     <div className={styles.wrapper}>
+                <ErrorMessage isVisible={isVisible} >{error}</ErrorMessage>
                 <Form className={styles.form} {...props}>
                     <Form.Group as={Row} controlId="formPlaintextEmail">  
                         <Form.Label column sm="4">Destination:</Form.Label>
