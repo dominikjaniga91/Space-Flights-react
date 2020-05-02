@@ -1,20 +1,20 @@
 
 import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
-import '../../App.css';
+import 'App.css';
 import { Form } from "react-bootstrap";
 import { Col } from "react-bootstrap";
-import SearchFlight from "./SearchFlight";
+import SearchFlight from "components/Atoms/Objects/SearchFlight";
 import {Link as MyLink} from 'react-scroll';
-import FlightTable from './Table/FlightTable';
-import MyButton from '../Button/MyButton';
-import { endpoints } from '../../endpoints';
+import FlightTable from 'components/Orgamisms/FlightTables/FlightTable';
+import MyButton from 'components/Atoms/Button/MyButton';
+import { endpoints } from 'endpoints';
 import Cookie from 'js-cookie';
-import Header from '../Orgamisms/Header/Header';
+import Header from 'components/Orgamisms/Header/Header';
 import styles from './ListOfFlights.module.scss';
-import AddItemButton from '../Atoms/AddItem/AddItemButton';
-import addIcon from '../../Assets/Icons/plus.svg';
-import AddItemBar from '../Atoms/AddItem/AddItenBar';
+import AddItemButton from 'components/Atoms/AddItem/AddItemButton';
+import addIcon from 'Assets/Icons/plus.svg';
+import AddItemBar from 'components/Atoms/AddItem/AddItenBar';
 
 class ListOfFlights extends Component{
 

@@ -2,7 +2,7 @@ import React from 'react';
 import { Link} from "react-router-dom";
 import { Table } from "react-bootstrap";
 import styles from './FlightTable.module.scss';
-import { routes } from '../../../routes';
+import { routes } from 'routes';
 
 
 const FlightTable = ({dataFlight, deleteFlight}) => (

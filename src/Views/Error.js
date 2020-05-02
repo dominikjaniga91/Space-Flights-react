@@ -1,7 +1,7 @@
 import React from 'react';
-import MyButton from '../components/Button/MyButton';
+import MyButton from 'components/Atoms/Button/MyButton';
 import styled from 'styled-components';
-import errorImage from '../Assets/images/404_v7.png';
+import errorImage from 'Assets/images/404_v7.png';
 
 
 const StyledImage = styled.div`

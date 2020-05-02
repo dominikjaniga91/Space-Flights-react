@@ -1,9 +1,9 @@
 import React from 'react';
-import headerLogo from '../../../Assets/images/space-logo.png';
+import headerLogo from 'Assets/images/space-logo.png';
 import styled from 'styled-components';
 import HeaderNavigation from './HeaderNavigation';
 import { NavLink } from 'react-router-dom';
-import { routes } from '../../../routes';
+import { routes } from 'routes';
 
 
 

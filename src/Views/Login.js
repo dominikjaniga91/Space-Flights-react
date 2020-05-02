@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
-import MyButton from '../components/Button/MyButton';
+import MyButton from 'components/Atoms/Button/MyButton';
 import Cookie from 'js-cookie';
-import Input from '../components/Atoms/Input/Input';
-import loginIcon from '../Assets/Icons/user-3.svg';
-import passwordIcon from '../Assets/Icons/locked-4.svg';
+import Input from 'components/Atoms/Input/Input';
+import loginIcon from 'Assets/Icons/user-3.svg';
+import passwordIcon from 'Assets/Icons/locked-4.svg';
 import styled from 'styled-components';
-import  ButtonIcon  from '../components/Atoms/ButtonIcon/ButtonIcon';
-import { endpoints } from '../endpoints';
-import ErrorMessage from '../components/Atoms/ErrorMessage/ErrorMessage';
+import  ButtonIcon  from 'components/Atoms/ButtonIcon/ButtonIcon';
+import { endpoints } from 'endpoints';
+import ErrorMessage from 'components/Atoms/ErrorMessage/ErrorMessage';
 import { Redirect } from "react-router-dom";
-import { routes } from '../routes';
+import { routes } from 'routes';
 
 const StyledWrapper = styled.div`
 

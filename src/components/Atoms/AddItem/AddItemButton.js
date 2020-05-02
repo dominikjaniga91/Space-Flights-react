@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import ButtonIcon from '../ButtonIcon/ButtonIcon';
+import ButtonIcon from 'components/Atoms/ButtonIcon/ButtonIcon';
 
 
 const StyledButtonIcon = styled(ButtonIcon)`

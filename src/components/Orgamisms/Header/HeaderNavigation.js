@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { routes } from '../../../routes';
+import { routes } from 'routes';
 import styled from 'styled-components';
 import Cookie from 'js-cookie';
 

@@ -1,19 +1,19 @@
 import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
-import '../../App.css';
+import 'App.css';
 import { Form } from "react-bootstrap";
 import { Col } from "react-bootstrap";
 import {Link as MyLink} from 'react-scroll';
-import SearchPassenger from './SearchPassenger'
-import PassengerTable from './Table/PassengerTable';
-import { endpoints } from '../../endpoints';
+import SearchPassenger from 'components/Atoms/Objects/SearchPassenger'
+import PassengerTable from 'components/Orgamisms/PassengerTables/PassengerTable';
+import { endpoints } from 'endpoints';
 import Cookie from 'js-cookie';
-import Header from '../Orgamisms/Header/Header';
-import MyButton from '../Button/MyButton';
+import Header from 'components/Orgamisms/Header/Header';
+import MyButton from 'components/Atoms/Button/MyButton';
 import styles from './ListOfPassengers.module.scss';
-import AddItemButton from '../Atoms/AddItem/AddItemButton';
-import addIcon from '../../Assets/Icons/plus.svg';
-import AddItemBar from '../Atoms/AddItem/AddItenBar';
+import AddItemButton from 'components/Atoms/AddItem/AddItemButton';
+import addIcon from 'Assets/Icons/plus.svg';
+import AddItemBar from 'components/Atoms/AddItem/AddItenBar';
 
 const token = Cookie.get("jwt");
 
