@@ -37,6 +37,7 @@ const HeaderNavigation = () => (
     <nav>
         <StyledNavLink  activeClassName="active" to={routes.flights}>Flights</StyledNavLink>
         <StyledNavLink  activeClassName="active" to={routes.passengers}> Passengers</StyledNavLink>
+        <StyledNavLink  activeClassName="active" to={routes.users}> Users</StyledNavLink>
     </nav>
         <StyledNavLink onClick={clearSession} to={routes.login}> Logout</StyledNavLink>
     </>
