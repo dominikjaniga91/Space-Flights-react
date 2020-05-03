@@ -14,6 +14,7 @@ import { routes } from 'routes';
 import SecuredRoute from 'security/SecuredRoute';
 import Error from 'Views/Error';
 import ListOfUsers from './Views/User/ListOfUsers';
+import AddUpdateUser from './Views/User/AddUpdateUser';
 
 function App() {
 
@@ -34,6 +35,7 @@ function App() {
               <SecuredRoute  path={routes.passenger}  exact component={AddUpdatePassenger} />
               <SecuredRoute  path={routes.flight} exact  component={AddUpdateFlight} />
               <SecuredRoute  path={routes.users} exact  component={ListOfUsers} />
+              <SecuredRoute  path={routes.updateUser} exact  component={AddUpdateUser} />
               <SecuredRoute  component={Error} />
             </Switch>
         </>

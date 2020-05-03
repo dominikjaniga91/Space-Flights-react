@@ -4,7 +4,6 @@ import 'bootstrap/dist/css/bootstrap.css';
 import 'App.css';
 import { Form } from "react-bootstrap";
 import { Col } from "react-bootstrap";
-import User from "components/Atoms/Objects/User";
 import {Link as MyLink} from 'react-scroll';
 import FlightTable from 'components/Orgamisms/FlightTables/FlightTable';
 import MyButton from 'components/Atoms/Button/MyButton';
@@ -16,12 +15,13 @@ import AddItemButton from 'components/Atoms/AddItem/AddItemButton';
 import addIcon from 'Assets/Icons/plus.svg';
 import AddItemBar from 'components/Atoms/AddItem/AddItenBar';
 import UserTable from 'components/Orgamisms/UserTables/UserTable';
+import AddUpdateUser from './AddUpdateUser';
+
 
 class ListOfUsers extends Component{
 
   constructor(props) {
     super(props)
-    this.state = new User();
     this.state = {
       dataUser: [],
       isNewItemBarVisible: false,
