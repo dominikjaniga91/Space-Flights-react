@@ -20,10 +20,12 @@ class AddUpdateUser extends Component {
     }
     
     componentDidMount() {
+
+        const username = Cookie.get("username");
         
-        if(this.props.match.params.id !== undefined){
+        if(username !== undefined){
               
-            fetch(endpoints.user + this.props.match.params.id,
+            fetch(endpoints.user + username,
             {
                 headers: {'Authorization': token}
             })
