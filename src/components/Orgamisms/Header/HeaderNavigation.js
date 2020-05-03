@@ -32,13 +32,14 @@ const clearSession = () => {
     Cookie.remove("jwt");
 }
 
-const HeaderNavigation = () => (
+const HeaderNavigation = ({ userId }) => (
     <>
     <nav>
         <StyledNavLink  activeClassName="active" to={routes.flights}>Flights</StyledNavLink>
         <StyledNavLink  activeClassName="active" to={routes.passengers}> Passengers</StyledNavLink>
         <StyledNavLink  activeClassName="active" to={routes.users}> Users</StyledNavLink>
     </nav>
+        <StyledNavLink activeClassName="active" to={routes.user + userId}> Account </StyledNavLink>
         <StyledNavLink onClick={clearSession} to={routes.login}> Logout</StyledNavLink>
     </>
 );

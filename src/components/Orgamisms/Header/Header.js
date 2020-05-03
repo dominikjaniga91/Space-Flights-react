@@ -12,7 +12,7 @@ const StyledWrapper = styled.div`
     width: 100%;
     height: 56px;
     display: grid;
-    grid-template-columns: 60px 1fr 120px;
+    grid-template-columns: 60px 1fr 120px 120px;
     align-items: center;
 `;
 

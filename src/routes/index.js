@@ -15,4 +15,6 @@ export const routes = {
     flightPassengers: '/flight-passengers/:id',
     flightPassengersReal: '/flight-passengers/',
     users: '/users',
+    updateUser: '/users/:id',
+    user: '/users/',
 }
