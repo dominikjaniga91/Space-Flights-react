@@ -30,6 +30,7 @@ const StyledNavLink = styled(NavLink)`
 
 const clearSession = () => {
     Cookie.remove("jwt");
+    Cookie.remove("username");
 }
 
 const HeaderNavigation = ({ userId }) => (
