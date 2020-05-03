@@ -23,9 +23,6 @@ const UserTable = ({dataUser, deleteUser}) => (
                 <td>{user.username}</td>
                 <td>{user.role}</td>
                 <td>
-                  <Link to={`${routes.user}${user.id}`}>
-                    <i  className="icon-sliders" style={{ fontSize: "15px" }} />
-                  </Link>
                   <span >
                     <i  className="icon-trash-2" style={{ fontSize: "15px" }} 
                         onClick={() => {deleteUser(user.id)}} />
