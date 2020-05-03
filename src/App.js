@@ -13,6 +13,7 @@ import Login from 'Views/Login';
 import { routes } from 'routes';
 import SecuredRoute from 'security/SecuredRoute';
 import Error from 'Views/Error';
+import ListOfUsers from './Views/User/ListOfUsers';
 
 function App() {
 
@@ -32,6 +33,7 @@ function App() {
               <SecuredRoute  path={routes.flightPassengers} exact component={FlightPassengers} />
               <SecuredRoute  path={routes.passenger}  exact component={AddUpdatePassenger} />
               <SecuredRoute  path={routes.flight} exact  component={AddUpdateFlight} />
+              <SecuredRoute  path={routes.users} exact  component={ListOfUsers} />
               <SecuredRoute  component={Error} />
             </Switch>
         </>

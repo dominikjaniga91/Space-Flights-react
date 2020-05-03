@@ -11,10 +11,11 @@ import MyButton from 'components/Atoms/Button/MyButton';
 import { endpoints } from 'endpoints';
 import Cookie from 'js-cookie';
 import Header from 'components/Orgamisms/Header/Header';
-import styles from './ListOfFlights.module.scss';
+import styles from './ListOfUsers.module.scss';
 import AddItemButton from 'components/Atoms/AddItem/AddItemButton';
 import addIcon from 'Assets/Icons/plus.svg';
 import AddItemBar from 'components/Atoms/AddItem/AddItenBar';
+import UserTable from 'components/Orgamisms/UserTables/UserTable';
 
 class ListOfUsers extends Component{
 
@@ -38,7 +39,7 @@ class ListOfUsers extends Component{
     .then(response => response.json())
     .then(result =>  { 
       console.log(result)
-      this.setState({ dataFlight: result })
+      this.setState({ dataUser: result })
     })
     .catch(error => console.log(error));
   }
@@ -68,7 +69,10 @@ class ListOfUsers extends Component{
       />
       <AddItemBar isVisible={this.state.isNewItemBarVisible}/>
       <div className={styles.wrapper} id="top">
-       
+      <UserTable 
+          dataUser={this.state.dataUser}
+          deleteUser={this.deleteUser}
+        />
       <MyLink
           activeClass="active" 
           to="top" 
