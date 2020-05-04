@@ -139,8 +139,8 @@ handleSubmit = event => {
                        />
                   </Col>
               </Form.Group>
-              <MyButton>Search</MyButton>
-              <MyButton onClick={() => this.componentDidMount()}>Reset</MyButton>
+              <MyButton type="button"  onClick={() => this.componentDidMount()}>Reset</MyButton>
+              <MyButton type="submit" >Search</MyButton>
           </Form.Row>
         </Form>
         <FlightTable 

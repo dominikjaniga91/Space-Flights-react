@@ -68,9 +68,9 @@ const FlightForm = ({ flight, historyBack, isVisible, error, ...props }) => (
                         </Col>
                     </Form.Group>
                     <div className={styles.button__wrapper}>
-                        <MyButton onClick={historyBack} >Cancel</MyButton>
+                        <MyButton  type="button" onClick={historyBack} >Cancel</MyButton>
                         &nbsp;
-                        <MyButton>Save</MyButton>
+                        <MyButton  type="submit">Save</MyButton>
                     </div>
                 </Form>
             </div>

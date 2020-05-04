@@ -69,6 +69,29 @@ class ListOfPassengers extends Component{
     this.setState(updatedState);
 }
 
+handleSubmit = event => {
+  event.preventDefault();
+   fetch(endpoints.searchPassenger, {
+      method: "POST",
+      headers: {
+          'Accept':'application/json',
+          'Content-Type':'application/json',
+          'Authorization': this.state.token
+      },
+      body: JSON.stringify( {"firstName": this.state.firstName,
+                              "lastName": this.state.lastName,
+                              "birthDate": this.state.birthDate   })
+  })
+  .then(res => res.json())
+  .then(result =>  { 
+  
+      console.log(result)
+      this.setState({ dataPassenger: result })
+    
+  })
+  .catch(error => console.log(error));
+}
+
   render() {
     return (
 
@@ -87,10 +110,10 @@ class ListOfPassengers extends Component{
                     <Form.Label column sm="10">First name:</Form.Label>
                 
                     <Form.Control type="text"
-                        name="destination"
+                        name="firstName"
                         value={this.state.firstName}
                         onChange={this.handleChange}
-                        required />
+                      />
                     </Col>    
                 </Form.Group>
                 <Form.Group as={Col}  controlId="formPlaintextEmail">  
@@ -98,10 +121,10 @@ class ListOfPassengers extends Component{
                     <Form.Label column sm="10">Last name:</Form.Label>
                 
                     <Form.Control type="text"
-                        name="destination"
+                        name="lastName"
                         value={this.state.lastName}
                         onChange={this.handleChange}
-                        required />
+                    />
                     </Col>    
                 </Form.Group>
                 <Form.Group as={Col} controlId="formPlaintextEmail">  
@@ -109,14 +132,14 @@ class ListOfPassengers extends Component{
                     <Form.Label column sm="10">Birth date:</Form.Label>
                     
                     <Form.Control type="date"
-                        name="finishDate"
+                        name="birthDate"
                         value={this.state.birthDate}
                         onChange={this.handleChange}
-                        required />
+                    />
                     </Col>
                 </Form.Group>
-                <MyButton>Search</MyButton>
-                <MyButton onClick={() => this.componentDidMount()}>Reset</MyButton>
+                <MyButton type="button" onClick={() => this.componentDidMount()}>Reset</MyButton>
+                <MyButton type="submit">Search</MyButton>
             </Form.Row>
           </Form>
           <PassengerTable 

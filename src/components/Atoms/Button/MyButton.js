@@ -22,7 +22,7 @@ const StyledButton = styled.button`
 const MyButton = ({ type, children, ...props }) => (
 
         <StyledButton 
-            type= { children === "Cancel" ? "button" : "submit" }
+            type= {type}
             {...props}> {children} </StyledButton>
 
 );
