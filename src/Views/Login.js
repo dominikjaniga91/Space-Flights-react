@@ -79,7 +79,8 @@ class Login extends Component {
                 const token = response.headers.get('Authorization');
                 if(token !== null){
                     Cookie.set("jwt", token);
-                    Cookie.set("username", this.state.username);
+
+                    Cookie.set("username", this.state.username, { expires: 1 });
                     this.setState({ status: true });
                 }
             }else {
