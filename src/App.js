@@ -36,6 +36,7 @@ function App() {
               <SecuredRoute  path={routes.flight} exact  component={AddUpdateFlight} />
               <SecuredRoute  path={routes.users} exact  component={ListOfUsers} />
               <SecuredRoute  path={routes.updateUser} exact  component={AddUpdateUser} />
+              <SecuredRoute  path={routes.newUser} exact  component={AddUpdateUser} />
               <SecuredRoute  component={Error} />
             </Switch>
         </>

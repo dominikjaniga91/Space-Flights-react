@@ -7,7 +7,6 @@ import Cookie from 'js-cookie';
 import Header from 'components/Orgamisms/Header/Header';
 import { Redirect } from "react-router-dom";
 
-const token = Cookie.get("jwt");
 
 class AddUpdatePassenger extends Component {
     
@@ -15,7 +14,8 @@ class AddUpdatePassenger extends Component {
     state = {
         error:'',
         isVisible: false,
-        status: false
+        status: false,
+        token: Cookie.get("jwt"),
     }
 
     componentDidMount() {
@@ -24,7 +24,7 @@ class AddUpdatePassenger extends Component {
               
             fetch(endpoints.passenger +this.props.match.params.id,
             {
-                headers: {'Authorization': token}
+                headers: {'Authorization': this.state.token}
             })
             .then(response => response.json())
             .then(result =>  {
@@ -51,7 +51,7 @@ class AddUpdatePassenger extends Component {
             method: this.props.match.params.id !== undefined ? "PUT" : "POST",
             headers: {
                 'Content-Type':'application/json',
-                'Authorization': token
+                'Authorization': this.state.token
             },
             body: JSON.stringify(this.state)
         })

@@ -8,13 +8,17 @@ import { routes } from 'routes';
 import Cookie from 'js-cookie';
 import Header from 'components/Orgamisms/Header/Header';
 
-const token = Cookie.get("jwt");
 
 class PassengerFlights extends Component {
     
 constructor(props) {
     super(props)
-    this.state = {flightsId: [], dataFlightPassenger: [], dataFlight: [] };
+    this.state = {
+        flightsId: [], 
+        dataFlightPassenger: [], 
+        dataFlight: [], 
+        token: Cookie.get("jwt")
+    };
     this.loadPassengerFlights();
 }
     
@@ -25,7 +29,7 @@ constructor(props) {
             
             fetch(endpoints.passengerFlights + this.props.match.params.id,
             {
-                headers: {'Authorization': token}
+                headers: {'Authorization': this.state.token}
             })    
             .then(response => response.json())
             .then(result =>  { 
@@ -39,7 +43,7 @@ constructor(props) {
     componentDidMount() {
         fetch(endpoints.flights,
         {
-            headers: {'Authorization': token}
+            headers: {'Authorization': this.state.token}
         })
         .then(response => response.json())
         .then(result =>  { 
@@ -53,7 +57,7 @@ constructor(props) {
         if((window.confirm(" Are you sure ?"))){
             fetch(endpoints.passengerFlights + this.props.match.params.id + "/" + flightId , {
                 method: "DELETE",
-                headers: {'Authorization': token}
+                headers: {'Authorization': this.state.token}
              })
             .then(result => console.log(result))
             .catch(error => console.log(error));
@@ -70,7 +74,7 @@ constructor(props) {
             method: 'PUT',
             headers: {
                 'Content-Type':'application/json',
-                'Authorization': token
+                'Authorization': this.state.token
             },
             mode: 'cors',
             body: JSON.stringify(this.state.flightsId)

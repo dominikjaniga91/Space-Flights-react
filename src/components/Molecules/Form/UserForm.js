@@ -26,7 +26,7 @@ const UserForm = ({ user, historyBack, isVisible, error, ...props }) => (
                        
                     </Form.Group>
                     <Form.Group as={Row} controlId="formPlaintextEmail">  
-                        <Form.Label column sm="4">Password:</Form.Label>
+                        <Form.Label column sm="4">New password:</Form.Label>
                         <Col sm="8">
                         <Form.Control type="password"
                                name="password"
@@ -38,13 +38,13 @@ const UserForm = ({ user, historyBack, isVisible, error, ...props }) => (
                     </Form.Group>
                   
                     <Form.Group as={Row} controlId="formPlaintextEmail">  
-                        <Form.Label column sm="4">Sex:</Form.Label>
+                        <Form.Label column sm="4">Role:</Form.Label>
                         <Col sm="8">
                         <Form.Control as="select" name="role"  value={user.role} {...props} required>
                             <option defaultValue value="none">Select</option>
-                            <option value="ROLE_ADMIN">Admin</option>
-                            <option value="ROLE_MANAGER">Manager</option>
-                            <option value="ROLE_EMPLOYEE">Employee</option>
+                            <option value="ADMIN">Admin</option>
+                            <option value="MANAGER">Manager</option>
+                            <option value="EMPLOYEE">Employee</option>
                         </Form.Control>
                         </Col>
                     </Form.Group>

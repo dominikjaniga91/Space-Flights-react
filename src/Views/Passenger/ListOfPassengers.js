@@ -15,7 +15,7 @@ import AddItemButton from 'components/Atoms/AddItem/AddItemButton';
 import addIcon from 'Assets/Icons/plus.svg';
 import AddItemBar from 'components/Atoms/AddItem/AddItenBar';
 
-const token = Cookie.get("jwt");
+
 
 class ListOfPassengers extends Component{
   
@@ -23,15 +23,17 @@ class ListOfPassengers extends Component{
     state = {
       dataPassenger: [],
       isNewItemBarVisible: false,
+      token: Cookie.get("jwt"),
     }
 
     toggleNewItemBar = () => 
     this.setState(prevState => ({ isNewItemBarVisible: !prevState.isNewItemBarVisible, }));
     
   componentDidMount() {
+  
     fetch(endpoints.passengers,
       {
-        headers: {'Authorization': token}
+        headers: {'Authorization': this.state.token}
       }) 
       .then(response => response.json())
       .then(result =>  { 
@@ -48,7 +50,7 @@ class ListOfPassengers extends Component{
       fetch(endpoints.passenger +passengerId,
       { 
         method:'DELETE',
-        headers: {'Authorization': token}
+        headers: {'Authorization': this.state.token}
       })
       .then(response => console.log(response))
       .catch(error => console.log(error));

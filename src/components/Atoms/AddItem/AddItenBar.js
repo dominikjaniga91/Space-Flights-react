@@ -18,7 +18,8 @@ const StyledWrapper = styled.div`
     visibility: hidden;
     opacity: 0;
     transition: visibility 0s 2s, opacity .4s linear;
- 
+   
+
      ${({isVisible}) =>
         isVisible && css` 
             visibility: visible;
@@ -31,12 +32,13 @@ const StyledWrapper = styled.div`
 `;
 
 const StyledLink = styled(Link)`
-
+    text-transform: uppercase;
     text-decoration: none;
+    letter-spacing: 1px;
     color: white;
     padding-left: 10px;
     margin-top: 30px;
-    font-size: 14px;
+    font-size: 12px;
 
     :hover{
         text-decoration: none;
@@ -50,8 +52,8 @@ const AddItemBar = ({ isVisible }) => (
     <StyledWrapper isVisible={isVisible}>
 
         <StyledLink to={routes.newPassenger}>Add passenger</StyledLink><br></br>
-        <StyledLink to={routes.newFlight}>Add flight</StyledLink>
- 
+        <StyledLink to={routes.newFlight}>Add flight</StyledLink><br></br>
+        <StyledLink to={routes.newUser}>Add user</StyledLink>
       
     </StyledWrapper>
     

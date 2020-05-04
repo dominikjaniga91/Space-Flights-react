@@ -8,15 +8,15 @@ import Cookie from 'js-cookie';
 import Header from 'components/Orgamisms/Header/Header';
 import { Redirect } from "react-router-dom";
 
-const token = Cookie.get("jwt");
-
+ 
 class AddUpdateFlight extends Component {
     
     state = new FlightObject(); 
     state = {
         error:'',
         isVisible: false,
-        status: false
+        status: false,
+        token: Cookie.get("jwt")
     }
     
     componentDidMount() {
@@ -25,7 +25,7 @@ class AddUpdateFlight extends Component {
               
             fetch(endpoints.flight + this.props.match.params.id,
             {
-                headers: {'Authorization': token}
+                headers: {'Authorization': this.state.token}
             })
             .then(response => response.json())
             .then(result =>  {
@@ -52,7 +52,7 @@ class AddUpdateFlight extends Component {
             headers: {
                 'Accept':'application/json',
                 'Content-Type':'application/json',
-                'Authorization': token
+                'Authorization': this.state.token
             },
             body: JSON.stringify(this.state)
         })

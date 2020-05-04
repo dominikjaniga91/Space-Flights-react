@@ -40,7 +40,7 @@ const HeaderNavigation = ({ userId }) => (
         <StyledNavLink  activeClassName="active" to={routes.passengers}> Passengers</StyledNavLink>
         <StyledNavLink  activeClassName="active" to={routes.users}> Users</StyledNavLink>
     </nav>
-        <StyledNavLink activeClassName="active" to={routes.user + userId}> Account </StyledNavLink>
+        <StyledNavLink activeClassName="active" to={routes.user + Cookie.get("username")}> Account </StyledNavLink>
         <StyledNavLink onClick={clearSession} to={routes.login}> Logout</StyledNavLink>
     </>
 );

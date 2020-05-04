@@ -2,11 +2,7 @@
 import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'App.css';
-import { Form } from "react-bootstrap";
-import { Col } from "react-bootstrap";
 import {Link as MyLink} from 'react-scroll';
-import FlightTable from 'components/Orgamisms/FlightTables/FlightTable';
-import MyButton from 'components/Atoms/Button/MyButton';
 import { endpoints } from 'endpoints';
 import Cookie from 'js-cookie';
 import Header from 'components/Orgamisms/Header/Header';
@@ -15,8 +11,6 @@ import AddItemButton from 'components/Atoms/AddItem/AddItemButton';
 import addIcon from 'Assets/Icons/plus.svg';
 import AddItemBar from 'components/Atoms/AddItem/AddItenBar';
 import UserTable from 'components/Orgamisms/UserTables/UserTable';
-import AddUpdateUser from './AddUpdateUser';
-
 
 class ListOfUsers extends Component{
 
@@ -25,6 +19,7 @@ class ListOfUsers extends Component{
     this.state = {
       dataUser: [],
       isNewItemBarVisible: false,
+      token: Cookie.get("jwt")
     }
 }
 
@@ -32,9 +27,9 @@ class ListOfUsers extends Component{
   this.setState(prevState => ({ isNewItemBarVisible: !prevState.isNewItemBarVisible, }));
 
   componentDidMount() {
-    const token = Cookie.get("jwt");
+
     fetch(endpoints.user, {
-      headers: {'Authorization': token}
+      headers: {'Authorization': this.state.token}
     })
     .then(response => response.json())
     .then(result =>  { 
@@ -49,7 +44,9 @@ class ListOfUsers extends Component{
     if(window.confirm(" Are you sure ?")){
       fetch(endpoints.user +userId,
       {
-        method:'DELETE'})
+        method:'DELETE',
+        headers: {'Authorization': this.state.token}
+      })
       .then(response => console.log(response))
       .catch(error => console.log(error));
 

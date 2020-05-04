@@ -1,9 +1,6 @@
 import React from 'react';
-import { Link} from "react-router-dom";
 import { Table } from "react-bootstrap";
 import styles from './UserTable.module.scss';
-import { routes } from 'routes';
-
 
 const UserTable = ({dataUser, deleteUser}) => (
 

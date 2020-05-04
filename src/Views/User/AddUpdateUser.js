@@ -5,10 +5,7 @@ import "Assets/fontello/css/fontello.css";
 import { endpoints } from 'endpoints';
 import { routes } from 'routes';
 import Cookie from 'js-cookie';
-import Header from 'components/Orgamisms/Header/Header';
 import { Redirect } from "react-router-dom";
-
-const token = Cookie.get("jwt");
 
 class AddUpdateUser extends Component {
     
@@ -16,18 +13,17 @@ class AddUpdateUser extends Component {
     state = {
         error:'',
         isVisible: false,
-        status: false
+        status: false,
+        token: Cookie.get("jwt")
     }
     
     componentDidMount() {
-
-        const username = Cookie.get("username");
-        
-        if(username !== undefined){
-              
-            fetch(endpoints.user + username,
+  
+        if(this.props.match.params.username !== undefined){
+          
+            fetch(endpoints.user + this.props.match.params.username,
             {
-                headers: {'Authorization': token}
+                headers: {'Authorization': this.state.token}
             })
             .then(response => response.json())
             .then(result =>  {
@@ -48,19 +44,19 @@ class AddUpdateUser extends Component {
 
     handleSubmit = event => {
         event.preventDefault();
-    
+
          fetch(endpoints.user, {
-            method: this.props.match.params.id !== undefined ? "PUT" : "POST",
+            method: this.props.match.params.username !== undefined ? "PUT" : "POST",
             headers: {
                 'Accept':'application/json',
                 'Content-Type':'application/json',
-                'Authorization': token
+                'Authorization': this.state.token
             },
             body: JSON.stringify(this.state)
         })
         .then(response => {
 
-                if(response.status !== 201){
+                if(response.status !== 200 || response.status !== 201){
                     response.json().then(data => { 
                         this.setState(
                             {error: data.detail, isVisible: true })
@@ -77,7 +73,7 @@ class AddUpdateUser extends Component {
     render() {
 
         if(this.state.status){
-            return <Redirect to={{ pathname: routes.flights }} />
+            return <Redirect to={{ pathname: routes.users }} />
         }else {
             return (
                 <>  

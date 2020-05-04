@@ -24,6 +24,7 @@ class ListOfFlights extends Component{
     this.state = {
       dataFlight: [],
       isNewItemBarVisible: false,
+      token: Cookie.get("jwt")
     }
     this.handleChange = this.handleChange.bind(this);
 
@@ -33,9 +34,8 @@ class ListOfFlights extends Component{
   this.setState(prevState => ({ isNewItemBarVisible: !prevState.isNewItemBarVisible, }));
 
   componentDidMount() {
-    const token = Cookie.get("jwt");
     fetch(endpoints.flights, {
-      headers: {'Authorization': token}
+      headers: {'Authorization': this.state.token}
     })
     .then(response => response.json())
     .then(result =>  { 
@@ -47,10 +47,12 @@ class ListOfFlights extends Component{
 
 
   deleteFlight = (flightId) =>{
-    if(window.confirm("Operation is irreversible. Are you sure that you want to continue?")){
+    if(window.confirm("Are you sure ?")){
       fetch(endpoints.flight +flightId,
       {
-        method:'DELETE'})
+        method:'DELETE',
+        headers: {'Authorization': this.state.token}
+      })
       .then(response => console.log(response))
       .catch(error => console.log(error));
 
@@ -75,7 +77,8 @@ handleSubmit = event => {
       method: "POST",
       headers: {
           'Accept':'application/json',
-          'Content-Type':'application/json'
+          'Content-Type':'application/json',
+          'Authorization': this.state.token
       },
       body: JSON.stringify( {"destination": this.state.destination,
                               "startDate": this.state.startDate,

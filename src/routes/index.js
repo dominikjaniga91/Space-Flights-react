@@ -2,19 +2,23 @@ export const routes = {
 
     home:'/', 
     login:'/login',
+
     flights:'/flights',
+    updateFlight:'/flight/:id',
+    flight:'/flight/',
+    newFlight:'/new-flight', 
+    flightPassengers: '/flight-passengers/:id',
+    flightPassengersReal: '/flight-passengers/',
+
     passengers:'/passengers',
     newPassenger:'/new-passenger',
     updatePassenger:'/passenger/:id',
     passenger:'/passenger/',
-    updateFlight:'/flight/:id',
-    flight:'/flight/',
-    newFlight:'/new-flight', 
     passengerFlights:'/passenger-flights/:id',
     passengerFlightsReal:'/passenger-flights/',
-    flightPassengers: '/flight-passengers/:id',
-    flightPassengersReal: '/flight-passengers/',
+    
     users: '/users',
-    updateUser: '/users/:id',
+    updateUser: '/users/:username',
     user: '/users/',
+    newUser: '/new-user',
 }
