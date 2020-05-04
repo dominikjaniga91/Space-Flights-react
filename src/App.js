@@ -22,7 +22,7 @@ function App() {
       <BrowserRouter>
         <> 
             <Switch>
-              <Route path={routes.login} component={Login} />
+              <Route path={routes.login} exact component={Login} />
               <SecuredRoute  path={routes.home} exact component={Home} />
               <SecuredRoute  path={routes.flights} exact component={ListOfFlights} />
               <SecuredRoute  path={routes.passengers} exact component={ListOfPassengers} />
