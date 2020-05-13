@@ -12,9 +12,7 @@ import { endpoints } from 'endpoints';
 import Cookie from 'js-cookie';
 import Header from 'components/Orgamisms/Header/Header';
 import styles from './ListOfFlights.module.scss';
-import AddItemButton from 'components/Atoms/AddItem/AddItemButton';
-import addIcon from 'Assets/Icons/plus.svg';
-import AddItemBar from 'components/Atoms/AddItem/AddItenBar';
+import Sidebar from 'components/Orgamisms/Sidebar/Sidebar';
 
 class ListOfFlights extends Component{
 
@@ -30,9 +28,55 @@ class ListOfFlights extends Component{
 
 }
 
-  toggleNewItemBar = () => 
-  this.setState(prevState => ({ isNewItemBarVisible: !prevState.isNewItemBarVisible, }));
+  // show add idem bar
+  toggleNewItemBar = () => {
+    
+    this.setState(prevState => ({ 
+      isNewItemBarVisible: !prevState.isNewItemBarVisible, 
+    }));
+  }
 
+  // save flights to pdf
+  getFlightToPdf = () => {
+
+    fetch(endpoints.pdfFlights, {
+      headers: {'Authorization': this.state.token}
+    })
+    .then(response => response.blob())
+    .then(blob => {
+
+      const url = window.URL.createObjectURL(new Blob([blob]));
+      const link = document.createElement('a');
+      link.href = url;
+      link.setAttribute('download', `spaceflights.pdf`);
+      document.body.appendChild(link);
+      link.click();
+      link.parentNode.removeChild(link);
+    })
+    .catch(error => console.log(error));
+  }
+
+  // save flights to excel
+  getFlightToXlsx = () => {
+
+    fetch(endpoints.excelFlights, {
+      headers: {'Authorization': this.state.token}
+    })
+    .then(response => response.blob())
+    .then(blob => {
+
+      const url = window.URL.createObjectURL(new Blob([blob]));
+      const link = document.createElement('a');
+      link.href = url;
+      link.setAttribute('download', `spaceflights.xlsx`);
+      document.body.appendChild(link);
+      link.click();
+      link.parentNode.removeChild(link);
+    })
+    .catch(error => console.log(error));
+  }
+
+  // display all flights
   componentDidMount() {
     fetch(endpoints.flights, {
       headers: {'Authorization': this.state.token}
@@ -71,6 +115,7 @@ class ListOfFlights extends Component{
     this.setState(updatedState);
 }
 
+// send searching data to controller
 handleSubmit = event => {
   event.preventDefault();
    fetch(endpoints.searchFlight, {
@@ -98,11 +143,14 @@ handleSubmit = event => {
     return (
       <>
       <Header />
-      <AddItemButton
-        onClick={this.toggleNewItemBar} 
-        icon={addIcon} 
+      <Sidebar 
+        onClick={this.toggleNewItemBar}
+        getFlightToPdf={this.getFlightToPdf} 
+        getFlightToXlsx={this.getFlightToXlsx}
+        isVisible={this.state.isNewItemBarVisible}
       />
-      <AddItemBar isVisible={this.state.isNewItemBarVisible}/>
+      
+      
       <div className={styles.wrapper} id="top">
        
         <Form  variant="light" className={styles.form} onSubmit={this.handleSubmit}>

@@ -20,7 +20,7 @@ const StyledWrapper = styled.div`
 
 `;
 
-const Sidebar = ({ isVisible, ...props}) => (
+const Sidebar = ({ getFlightToXlsx, getFlightToPdf, isVisible, ...props}) => (
 
     <StyledWrapper >
         <AddItemButton
@@ -28,8 +28,8 @@ const Sidebar = ({ isVisible, ...props}) => (
             icon={addIcon} 
         />
         <AddItemBar isVisible={isVisible}/>
-        <ExcelButton icon={xlsIcon}/>
-        <PdfButton  icon={pdfIcon}/>
+        <ExcelButton icon={xlsIcon} onClick={getFlightToXlsx}/>
+        <PdfButton  icon={pdfIcon} onClick={getFlightToPdf}/>
     </StyledWrapper>
 );
 

@@ -4,12 +4,14 @@
   float: left;
   position: relative;
   margin-top: 1.8vw;
-  
+  z-index: -1;
   
 }
 
 table tbody td:nth-child(1){
 
   width:10px;
+
 }
+
 
