@@ -9,13 +9,14 @@ const StyledButton = styled.button`
     margin-top: 37px;
     margin-right: 10px;
     margin-left: 10px;
-    background-color: hsl(200, 100%, 50%);
+    background-color: hsl(200, 100%, 70%);
     border: none;
     border-radius: 5px;
-    color: white;
+    color: black;
     :hover{
 
-        background-color: hsl(210, 100%, 60%);
+        background-color: hsl(200, 100%, 50%);
+        color: white;
     }
 `;
 

@@ -8,13 +8,14 @@ const StyledButtonIcon = styled(ButtonIcon)`
         position: absolute;
         top: 140px;
         right: 10px;
-        background-color: hsl(200, 100%, 50%);
+        background-color: hsl(200, 100%, 70%);
         border-radius: 50px;
         width: 45px;
         height: 45px;
         background-size: 75%;
         :hover{
             cursor: pointer;
+            background-color: hsl(200, 100%, 50%); 
         }
 `;
 

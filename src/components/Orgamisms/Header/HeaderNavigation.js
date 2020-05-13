@@ -19,13 +19,13 @@ const StyledNavLink = styled(NavLink)`
     :hover {
         color: white;
         text-decoration: none;
-        border-bottom: 2px solid hsl(204, 100%, 50%);
+        border-bottom: 2px solid hsl(200, 100%, 50%);
     }
 
     &.active{
         color: white;
         text-decoration: none;
-        border-bottom: 2px solid hsl(204, 100%, 50%);
+        border-bottom: 2px solid hsl(200, 100%, 70%);
     }
 `;
 
