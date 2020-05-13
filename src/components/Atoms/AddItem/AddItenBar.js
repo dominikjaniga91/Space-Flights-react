@@ -11,24 +11,21 @@ const StyledWrapper = styled.div`
     height: 100px;
     background-color: #262626;
     position: absolute;
-    top: 150px;
-    right: 2vw;
-    z-index:3;
+    top: 112px;
+    right: 2.12vw;
+    z-index:4;
     border-radius: 10px;
     visibility: hidden;
     opacity: 0;
     transition: visibility 0s 2s, opacity .4s linear;
-   
 
      ${({isVisible}) =>
         isVisible && css` 
             visibility: visible;
             opacity: 1;
             transition: opacity .4s linear;
+            
     `}
-
-
-   
 `;
 
 const StyledLink = styled(Link)`

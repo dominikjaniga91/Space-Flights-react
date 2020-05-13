@@ -1,5 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
+import AddItemButton from 'components/Atoms/AddItem/AddItemButton';
+import AddItemBar from 'components/Atoms/AddItem/AddItenBar';
 
 const StyledWrapper = styled.div`
 
@@ -13,9 +15,15 @@ const StyledWrapper = styled.div`
 
 `;
 
-const Sidebar = () => (
+const Sidebar = ({ isVisible, icon, ...props}) => (
 
-    <StyledWrapper />
+    <StyledWrapper >
+        <AddItemButton
+            {...props} 
+            icon={icon} 
+        />
+        <AddItemBar isVisible={isVisible}/>
+    </StyledWrapper>
 );
 
 export default Sidebar;
