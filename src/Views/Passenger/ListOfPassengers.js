@@ -11,10 +11,8 @@ import Cookie from 'js-cookie';
 import Header from 'components/Orgamisms/Header/Header';
 import MyButton from 'components/Atoms/Button/MyButton';
 import styles from './ListOfPassengers.module.scss';
-import AddItemButton from 'components/Atoms/AddItem/AddItemButton';
-import addIcon from 'Assets/Icons/plus.svg';
 import AddItemBar from 'components/Atoms/AddItem/AddItenBar';
-
+import Sidebar from 'components/Orgamisms/Sidebar/Sidebar';
 
 
 class ListOfPassengers extends Component{
@@ -97,10 +95,12 @@ handleSubmit = event => {
 
       <>
         <Header />
-        <AddItemButton
-          onClick={this.toggleNewItemBar} 
-          icon={addIcon} 
-        />
+        <Sidebar 
+        onClick={this.toggleNewItemBar}
+        getFlightToPdf={this.getFlightToPdf} 
+        getFlightToXlsx={this.getFlightToXlsx}
+        isVisible={this.state.isNewItemBarVisible}
+      />
         <AddItemBar isVisible={this.state.isNewItemBarVisible}/>
         <div className={styles.wrapper}>
           <Form  variant="light" className={styles.form} onSubmit={this.handleSubmit}>
