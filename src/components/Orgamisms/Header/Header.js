@@ -22,6 +22,8 @@ const StyledNavWrapper = styled.div`
     height: 56px;
     padding: 0;
     background-color: hsl(0, 0%, 15%);
+    position: relative;
+    z-index: 3;
 `;
 
 const Header = () => (

@@ -15,6 +15,7 @@ const StyledNavLink = styled(NavLink)`
     font-weight: bold;
     letter-spacing: 1px;
     line-height: 54px;
+    z-index: 3;
     :hover {
         color: white;
         text-decoration: none;
