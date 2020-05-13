@@ -3,8 +3,8 @@ import styled from 'styled-components';
 const ButtonIcon = styled.div`
   
   display: inline-block;
-  width: 67px;
-  height: 67px;
+  width: 77px;
+  height: 77px;
   border-radius: 20px;
   background-image: url(${({ icon }) => icon});
   background-repeat: no-repeat;

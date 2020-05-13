@@ -2,10 +2,15 @@ import React from 'react';
 import styled from 'styled-components';
 import AddItemButton from 'components/Atoms/AddItem/AddItemButton';
 import AddItemBar from 'components/Atoms/AddItem/AddItenBar';
+import ExcelButton from 'components/Atoms/ExcelButton/ExcelButton';
+import PdfButton from 'components/Atoms/PdfButton/PdfButton';
+import pdfIcon from 'Assets/Icons/pdf.svg';
+import xlsIcon from 'Assets/Icons/xls.svg';
+import addIcon from 'Assets/Icons/plus.svg';
 
 const StyledWrapper = styled.div`
 
-    width: 60px;
+    width: 70px;
     height: 100%;
     background-color: hsl(214, 7%, 20%);
     position: fixed;
@@ -15,14 +20,16 @@ const StyledWrapper = styled.div`
 
 `;
 
-const Sidebar = ({ isVisible, icon, ...props}) => (
+const Sidebar = ({ isVisible, ...props}) => (
 
     <StyledWrapper >
         <AddItemButton
             {...props} 
-            icon={icon} 
+            icon={addIcon} 
         />
         <AddItemBar isVisible={isVisible}/>
+        <ExcelButton icon={xlsIcon}/>
+        <PdfButton  icon={pdfIcon}/>
     </StyledWrapper>
 );
 
