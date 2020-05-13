@@ -48,7 +48,7 @@ class ListOfFlights extends Component{
       const url = window.URL.createObjectURL(new Blob([blob]));
       const link = document.createElement('a');
       link.href = url;
-      link.setAttribute('download', `spaceflights.pdf`);
+      link.setAttribute('download', `flights.pdf`);
       document.body.appendChild(link);
       link.click();
       link.parentNode.removeChild(link);
@@ -68,7 +68,7 @@ class ListOfFlights extends Component{
       const url = window.URL.createObjectURL(new Blob([blob]));
       const link = document.createElement('a');
       link.href = url;
-      link.setAttribute('download', `spaceflights.xlsx`);
+      link.setAttribute('download', `flights.xlsx`);
       document.body.appendChild(link);
       link.click();
       link.parentNode.removeChild(link);

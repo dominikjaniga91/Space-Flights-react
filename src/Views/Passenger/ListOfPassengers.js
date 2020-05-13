@@ -24,8 +24,52 @@ class ListOfPassengers extends Component{
       token: Cookie.get("jwt"),
     }
 
-    toggleNewItemBar = () => 
-    this.setState(prevState => ({ isNewItemBarVisible: !prevState.isNewItemBarVisible, }));
+    toggleNewItemBar = () => {
+      this.setState(prevState => ({ 
+        isNewItemBarVisible: !prevState.isNewItemBarVisible, 
+      }));
+    }
+    
+
+  // save flights to pdf
+  getFlightToPdf = () => {
+
+    fetch(endpoints.pdfPassengers, {
+      headers: {'Authorization': this.state.token}
+    })
+    .then(response => response.blob())
+    .then(blob => {
+
+      const url = window.URL.createObjectURL(new Blob([blob]));
+      const link = document.createElement('a');
+      link.href = url;
+      link.setAttribute('download', `passengers.pdf`);
+      document.body.appendChild(link);
+      link.click();
+      link.parentNode.removeChild(link);
+    })
+    .catch(error => console.log(error));
+  }
+
+  // save flights to excel
+  getFlightToXlsx = () => {
+
+    fetch(endpoints.excelPassengers, {
+      headers: {'Authorization': this.state.token}
+    })
+    .then(response => response.blob())
+    .then(blob => {
+
+      const url = window.URL.createObjectURL(new Blob([blob]));
+      const link = document.createElement('a');
+      link.href = url;
+      link.setAttribute('download', `passengers.xlsx`);
+      document.body.appendChild(link);
+      link.click();
+      link.parentNode.removeChild(link);
+    })
+    .catch(error => console.log(error));
+  }
     
   componentDidMount() {
   
