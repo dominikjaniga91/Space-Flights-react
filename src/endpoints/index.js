@@ -1,5 +1,5 @@
 
-const host = 'http://localhost:8080/api/';
+const host = 'https://myspacetravel.herokuapp.com/api/';
 export const endpoints ={
 
     passenger: host+'passenger/',
@@ -8,9 +8,9 @@ export const endpoints ={
     flight: host+'flight/',
     flights: host+'flights',
     flightPassengers: host+'flight/passengers/',
-    searchFlight: 'http://localhost:8080/search/flight',
-    searchPassenger: 'http://localhost:8080/search/passenger',
-    login: 'http://localhost:8080/login',
+    searchFlight: host + 'search/flight',
+    searchPassenger: host + 'search/passenger',
+    login: 'https://myspacetravel.herokuapp.com/login',
     user: host+'user/',
     pdfFlights: host + 'pdf/flights',
     pdfPassengers: host + 'pdf/passengers',
