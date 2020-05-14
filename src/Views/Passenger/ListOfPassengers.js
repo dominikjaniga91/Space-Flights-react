@@ -3,7 +3,6 @@ import 'bootstrap/dist/css/bootstrap.css';
 import 'App.css';
 import { Form } from "react-bootstrap";
 import { Col } from "react-bootstrap";
-import {Link as MyLink} from 'react-scroll';
 import SearchPassenger from 'components/Atoms/Objects/SearchPassenger'
 import PassengerTable from 'components/Orgamisms/PassengerTables/PassengerTable';
 import { endpoints } from 'endpoints';
@@ -190,14 +189,6 @@ handleSubmit = event => {
             dataPassenger={this.state.dataPassenger}
             deletePassenger={this.deletePassenger}
           />
-        <MyLink
-            activeClass="active" 
-            to="top" 
-            spy={true} 
-            smooth={true} 
-            offset={0} 
-            duration={500} 
-            ><span ><i  className="icon-up-open" /></span></MyLink>
         </div>
       </>
     );

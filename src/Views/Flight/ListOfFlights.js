@@ -5,7 +5,6 @@ import 'App.css';
 import { Form } from "react-bootstrap";
 import { Col } from "react-bootstrap";
 import SearchFlight from "components/Atoms/Objects/SearchFlight";
-import {Link as MyLink} from 'react-scroll';
 import FlightTable from 'components/Orgamisms/FlightTables/FlightTable';
 import MyButton from 'components/Atoms/Button/MyButton';
 import { endpoints } from 'endpoints';
@@ -13,6 +12,7 @@ import Cookie from 'js-cookie';
 import Header from 'components/Orgamisms/Header/Header';
 import styles from './ListOfFlights.module.scss';
 import Sidebar from 'components/Orgamisms/Sidebar/Sidebar';
+
 
 class ListOfFlights extends Component{
 
@@ -22,11 +22,10 @@ class ListOfFlights extends Component{
     this.state = {
       dataFlight: [],
       isNewItemBarVisible: false,
-      token: Cookie.get("jwt")
+      token: Cookie.get("jwt"),
     }
     this.handleChange = this.handleChange.bind(this);
-
-}
+  }
 
   // show add idem bar
   toggleNewItemBar = () => {
@@ -195,15 +194,6 @@ handleSubmit = event => {
           dataFlight={this.state.dataFlight}
           deleteFlight={this.deleteFlight}
         />
-
-        <MyLink
-          activeClass="active" 
-          to="top" 
-          spy={true} 
-          smooth={true} 
-          offset={0} 
-          duration={500} 
-        ><span ><i  className="icon-up-open" /></span></MyLink>
       </div>
       </>
     );

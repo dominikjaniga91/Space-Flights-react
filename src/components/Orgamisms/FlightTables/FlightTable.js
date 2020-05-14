@@ -15,7 +15,7 @@ const FlightTable = ({dataFlight, deleteFlight}) => (
               <th>Departure</th>
               <th>Arrival</th>
               <th>Plane capacity</th>
-              <th>Number of passengers</th>
+              <th>Passengers</th>
               <th>Ticket price</th>
               <th className={styles.column} >Action</th>
             </tr>
