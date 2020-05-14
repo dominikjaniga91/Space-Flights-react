@@ -1,12 +1,11 @@
 import React from 'react';
-import spaceLogo from './Assets/images/space-logo.png'
+import { Redirect } from "react-router-dom";
+import { routes } from 'routes';
 
 const Home = () => {
-    return (
-        <div>
-        <span><img  src={spaceLogo} id="spaceLogo" alt="space-logo"/>         </span>  
-        </div>
-    );
+
+    return <Redirect to={{ pathname: routes.flights }} />
+
 };
 
 export default Home;

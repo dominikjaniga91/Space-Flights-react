@@ -23,7 +23,7 @@ function App() {
         <> 
             <Switch>
               <Route path={routes.login} exact component={Login} />
-              <Route  path={routes.home} exact component={Home} />
+              <SecuredRoute  path={routes.home} exact component={Home} />
               <SecuredRoute  path={routes.flights} exact component={ListOfFlights} />
               <SecuredRoute  path={routes.passengers} exact component={ListOfPassengers} />
               <SecuredRoute  path={routes.newPassenger} exact component={AddUpdatePassenger} />
