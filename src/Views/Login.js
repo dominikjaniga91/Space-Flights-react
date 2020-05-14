@@ -10,13 +10,13 @@ import { endpoints } from 'endpoints';
 import ErrorMessage from 'components/Atoms/ErrorMessage/ErrorMessage';
 import { Redirect } from "react-router-dom";
 import { routes } from 'routes';
+import spaceLogo from 'Assets/images/space-logo.png'
 
 const StyledWrapper = styled.div`
 
     background-color: hsl(0, 0%, 15%, 80%);
     margin-left: auto;
     margin-right: auto;
-    margin-top: 14vw;
     width: 400px;
     height: 300px;
     border-radius: 10px;
@@ -36,7 +36,11 @@ const StyledInnerWrapper = styled.div`
 const StyledButtonIcon = styled(ButtonIcon)`
 
     filter: invert(57%) sepia(21%) saturate(2878%) hue-rotate(346deg) brightness(104%) contrast(7%);
+    width: 45px;
+    height: 45px;
+    background-size: 85%;
     align-self: center;
+    margin-left: 20px;
 `;
 
 const StyledButton = styled(MyButton)`
@@ -47,6 +51,19 @@ const StyledButton = styled(MyButton)`
     transform: translate(-55%, -50%);
     width: 100px;
     bottom: 40px;
+`;
+
+const StyledLogo = styled.div`
+    margin-top: 7vw;
+    margin-left: auto;
+    margin-right: auto;
+    width: 12vw;
+    height: 12vw;
+    background-image: url(${spaceLogo});
+    background-size: 100%;
+    background-repeat: no-repeat;
+    text-align: center;
+    
 `;
 
 class Login extends Component {
@@ -102,30 +119,33 @@ class Login extends Component {
         }else {
 
             return(
-            <StyledWrapper>
-                <ErrorMessage isVisible={this.state.isVisible} >{this.state.error}</ErrorMessage>
-                <form onSubmit={this.handleSubmit}>
-                    <StyledInnerWrapper>
-                        <StyledButtonIcon icon={loginIcon}/>
-                        <Input 
-                            placeholder="username"
-                            type="text"
-                            name="username"
-                            onChange={this.handleChange}
-                            required
-                        />
-                        <StyledButtonIcon icon={passwordIcon}/>
-                        <Input 
-                            placeholder="password"
-                            type="password"
-                            name="password"
-                            onChange={this.handleChange}
-                            required
-                        />
-                        <StyledButton>  Sign in </StyledButton>
-                    </StyledInnerWrapper>
-                </form>    
-            </StyledWrapper>
+                <>
+                    <StyledLogo />
+                    <StyledWrapper>
+                        <ErrorMessage isVisible={this.state.isVisible} >{this.state.error}</ErrorMessage>
+                        <form onSubmit={this.handleSubmit}>
+                            <StyledInnerWrapper>
+                                <StyledButtonIcon icon={loginIcon}/>
+                                <Input 
+                                    placeholder="username"
+                                    type="text"
+                                    name="username"
+                                    onChange={this.handleChange}
+                                    required
+                                />
+                                <StyledButtonIcon icon={passwordIcon}/>
+                                <Input 
+                                    placeholder="password"
+                                    type="password"
+                                    name="password"
+                                    onChange={this.handleChange}
+                                    required
+                                />
+                                <StyledButton>  Sign in </StyledButton>
+                            </StyledInnerWrapper>
+                        </form>    
+                    </StyledWrapper>
+                </>
             );
         }
     }
